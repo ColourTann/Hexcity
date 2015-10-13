@@ -39,7 +39,7 @@ public class Main extends ApplicationAdapter {
 	OrthographicCamera cam;
 	public static TextureAtlas atlas;
 	public static Main self;
-	public static int scale=8;
+	public static int scale=5;
 	public static boolean debug = true;
 	Screen currentScreen;
 	Screen previousScreen;

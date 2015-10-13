@@ -4,6 +4,13 @@ size: 128,32
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+empty
+  rotate: false
+  xy: 2, 2
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
 font
   rotate: false
   xy: 2, 13
@@ -13,56 +20,56 @@ font
   index: -1
 garden
   rotate: false
-  xy: 2, 2
+  xy: 20, 2
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 hut
   rotate: false
-  xy: 20, 2
+  xy: 38, 2
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 logger
   rotate: false
-  xy: 38, 2
+  xy: 56, 2
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 meeting
   rotate: false
-  xy: 56, 2
+  xy: 74, 2
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 pixel
   rotate: false
-  xy: 110, 18
+  xy: 110, 7
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 shrine
   rotate: false
-  xy: 74, 2
+  xy: 92, 2
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 temple
   rotate: false
-  xy: 92, 2
+  xy: 110, 21
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 trees
   rotate: false
-  xy: 110, 21
+  xy: 110, 10
   size: 16, 9
   orig: 16, 9
   offset: 0, 0

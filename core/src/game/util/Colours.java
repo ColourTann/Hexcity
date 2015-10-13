@@ -12,10 +12,7 @@ public class Colours {
 	public static Color dark = new Color(0x141421ff);
 	public static Color earth = new Color(0x754d27ff);
 	public static Color grass = new Color(0x738c3aff);
-	public static Color straw = new Color(0xe2cb8aff);
-	
-	
-	
+	public static Color straw = new Color(0xe2cb8aff);	
 	public static final Color white = new Color(1,1,1,1);
 	private static Pixmap p;
 	

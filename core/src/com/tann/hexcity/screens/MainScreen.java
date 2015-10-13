@@ -11,16 +11,31 @@ import game.util.TannFont;
 
 public class MainScreen extends Screen{
 	TannFont font= new TannFont(Main.atlas.findRegion("font"));
+	public static final int gridX=22,gridY=3;
+	public static final int pickerX=3, pickerY=3;
+	public static final int scoreX=2, scoreY=Main.height-4;
+	Grid grid = new Grid();
+	ScoreKeeper score = new ScoreKeeper();
+	TilePicker picker = new TilePicker();
+	public MainScreen() {
+		addActor(grid);
+		addActor(score);
+		addActor(picker);
+		score.setPosition(scoreX, scoreY);
+		grid.setPosition(gridX, gridY-grid.getHeight());
+		picker.setPosition(pickerX, pickerY);
+	}
+	
 	@Override
 	public void preDraw(Batch batch) {
 	}
 
-	String[] strings = new String[]{"Twas bryllyg and the slythy toves", "Did gyre and gymble in the wabe:", "All mymsy were the borogroves,", "And the mome raths outgrabe"};
+	
 	@Override
 	public void postDraw(Batch batch) {
-		batch.setColor(Colours.straw);
-		for(String s:strings)drawString(batch, s);
-		y=50;
+		batch.setColor(Colours.white);
+		
+	
 	}
 	int y=60;
 	public void drawString(Batch batch, String text){
