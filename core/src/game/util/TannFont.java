@@ -46,15 +46,35 @@ public class TannFont {
 		int spaceWidth=1;
 		glyphs.put(' ', new TextureRegion(font, font.getRegionWidth()-spaceWidth, 0, spaceWidth, 0));
 	}
-	public void drawString(Batch batch, float x, float y, String text){
+	public void drawString(Batch batch, float x, float y, String text, boolean fixedWidth){
 		//will probably want to cache this
 		for(char c:text.toCharArray()){
 			TextureRegion t= glyphs.get(c);
 			Draw.draw(batch, t, x, y);
-			x+=t.getRegionWidth()+1;
+			if(fixedWidth) x+= getDefaultWidth()+1;
+			else x+=t.getRegionWidth()+1;
 		}
 	}
 	
+	public int getWidth(String text){
+		return getWidth(text, false);
+	}
+	
+	public int getWidth(String text, boolean fixedWidth){
+		//need to take into account spaces
+		if(fixedWidth) return text.length()*getDefaultWidth();
+		int total=0;
+		for(char c:text.toCharArray()){
+			total+=glyphs.get(c).getRegionWidth();
+			total+=1;
+		}
+		total-=1;
+		return total;
+	}
+	
+	private int getDefaultWidth() {
+		return 3;
+	}
 	public int getHeight(){
 		return 5;
 	}

@@ -10,9 +10,9 @@ import com.tann.hexcity.Main;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.resizable=false;
-		config.vSyncEnabled=false;
-		config.foregroundFPS=0;
+		
+		config.vSyncEnabled=true;
+		config.foregroundFPS=60;
 		config.width=Main.width;
 		config.height=Main.height;
 		Settings settings = new Settings();

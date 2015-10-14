@@ -5,19 +5,11 @@ import game.util.Colours;
 import game.util.Draw;
 import game.util.Fonts;
 import game.util.Screen;
-import game.util.TannFont;
-
-import java.util.ArrayList;
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.PixmapIO;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -28,7 +20,10 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ScalingViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tann.hexcity.screens.MainScreen;
 
 
@@ -39,18 +34,39 @@ public class Main extends ApplicationAdapter {
 	OrthographicCamera cam;
 	public static TextureAtlas atlas;
 	public static Main self;
-	public static int scale=5;
+	public static int scale=10;
 	public static boolean debug = true;
 	Screen currentScreen;
 	Screen previousScreen;
 	FrameBuffer buffer;
 	public static float ticks;
 	public enum MainState{Normal, Paused}
+	Viewport port;
+	
+	SpriteBatch screenBatch;
 	
 	@Override
 	public void create () {
-
-
+		switch(Gdx.app.getType()){
+		case Android:
+//			scale = Gdx.graphics.getWidth()/Main.width;
+			break;
+		case Applet:
+			break;
+		case Desktop:
+			
+			break;
+		case HeadlessDesktop:
+			break;
+		case WebGL:
+			break;
+		case iOS:
+			break;
+		default:
+			break;
+		
+		}
+		screenBatch = new SpriteBatch();
 
 		self=this;
 
@@ -61,8 +77,20 @@ public class Main extends ApplicationAdapter {
 		buffer = new FrameBuffer(Format.RGBA8888, Main.width, Main.height, false);
 
 		atlas= new TextureAtlas(Gdx.files.internal("atlas_image.atlas"));
-		stage = new Stage(new FitViewport(Main.width, Main.height));
-		cam =(OrthographicCamera) stage.getCamera();
+		
+
+		port = new FitViewport(Main.width, Main.height);
+
+		
+		port.apply();
+		stage = new Stage(port);
+		
+		cam=(OrthographicCamera) stage.getCamera();
+		
+		
+
+		System.out.println(cam.position);
+		cam.update();
 		batch = (SpriteBatch) stage.getBatch();
 		Gdx.input.setInputProcessor(stage);
 		stage.addListener(new InputListener(){
@@ -74,20 +102,34 @@ public class Main extends ApplicationAdapter {
 
 
 		});
-
+//		Gdx.gl.glViewport(0, 0, Main.width-200, Main.height);
+//		
 		setScale(scale);
 		setScreen(new MainScreen());	
 
 		
-	
-		//		for(int i=0;i<1000;i++)	makeImage(i);
+
 	}
+
+	@Override
+	public void resize (int width, int height) {
+//		port.update((width/128)*128, (height/64)*64);
+		int xScale =(width/128);
+		int yScale =(height/64);
+		int scale = Math.min(xScale, yScale);
+		int w = scale*128;
+		int h =	scale*64;
+		port.update(w, h);
+		port.setScreenBounds(Gdx.graphics.getWidth()/2-w/2, Gdx.graphics.getHeight()/2-h/2, w, h);
+		port.apply();
+		cam.update();
+	}
+	
 	public void setScale(int scale){
-		Main.scale=scale;
-		int newWidth = width*scale;
-		int newHeight= height*scale;
-		Gdx.graphics.setDisplayMode(newWidth, newHeight, false);
-		stage.getViewport().update(newWidth, newHeight);
+		
+		Gdx.graphics.setDisplayMode(Main.width*scale, Main.height*scale, false);
+		
+		
 	}
 
 
@@ -123,36 +165,10 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-
+		Gdx.gl.glClearColor(Colours.dark.r, Colours.dark.g, Colours.dark.b, 1);
+		Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 		update(Gdx.graphics.getDeltaTime());
-
-		buffer.bind();
-		buffer.begin();
-		batch.begin();
-		batch.setColor(Colours.dark);
-		batch.setProjectionMatrix(cam.combined);
-		Draw.fillRectangle(batch, 0, 0, Main.width, Main.height);
-	
-		batch.end();
 		stage.draw();
-		batch.begin();
-
-		if(Main.debug)drawFPS(batch);
-		batch.end();
-		buffer.end();
-
-		batch.begin();
-		batch.setColor(1,1,1,1);
-		
-		buffer.getColorBufferTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
-		Draw.drawRotatedScaledFlipped(batch, buffer.getColorBufferTexture(), 0, 0, 1, 1, 0, false, true);
-		batch.end();
-		
-		batch.begin();
-		batch.setColor(1,1,1,1);
-		
-		batch.end();
 	}
 
 	public void drawFPS(Batch batch){
