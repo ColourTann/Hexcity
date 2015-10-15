@@ -6,7 +6,6 @@ import com.tann.hexcity.screens.mainScreen.MainScreen;
 
 import game.util.Colours;
 import game.util.Draw;
-import game.util.TannFont;
 
 public class TurnTracker extends Actor{
 	int blipSize=3;

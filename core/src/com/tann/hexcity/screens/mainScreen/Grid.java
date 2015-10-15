@@ -7,15 +7,17 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.tann.hexcity.screens.mainScreen.Tile.TileType;
 
 public class Grid extends Group{
+	//two lists of tiles, one for getting locations, one for iterating through all tiles
+	static final int startingTrees=12;
 	Tile[][] tiles = new Tile[9][11];
 	ArrayList<Tile> allTiles = new ArrayList<>();
 	public Tile lastTilePlaced;
 	public Grid() {
-		init();
+		setupTiles();
 		reset();
 	}
 	
-	void init(){
+	void setupTiles(){
 		for(int x=0;x<9;x++){
 			for(int y=0;y<11;y++){
 				boolean even = x%2==0;
@@ -46,7 +48,7 @@ public class Grid extends Group{
 		Tile startingTile = getTile(4, 5);
 		startingTile.setType(TileType.Shrine);
 		lastTilePlaced=startingTile;
-		for(int i=0;i<12;){
+		for(int i=0;i<startingTrees;){
 			Tile t=getTile((int)(Math.random()*tiles.length), (int)(Math.random()*tiles[0].length));
 			if(t==null)continue;
 			if(t.type!=TileType.Empty)continue;

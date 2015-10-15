@@ -3,7 +3,6 @@ package com.tann.hexcity;
 
 import game.util.Colours;
 import game.util.Draw;
-import game.util.Fonts;
 import game.util.Screen;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -39,19 +38,17 @@ public class Main extends ApplicationAdapter {
 	public static boolean debug = true;
 	Screen currentScreen;
 	Screen previousScreen;
-	FrameBuffer buffer;
 	public static float ticks;
 	public enum MainState{Normal, Paused}
 	Viewport port;
 
-	SpriteBatch screenBatch;
+
 
 	@Override
 	public void create () {
 		self=this;
 		switch(Gdx.app.getType()){
 		case Android:
-			//			scale = Gdx.graphics.getWidth()/Main.width;
 			break;
 		case Applet:
 			break;
@@ -66,38 +63,37 @@ public class Main extends ApplicationAdapter {
 			break;
 		default:
 			break;
-
 		}
-		screenBatch = new SpriteBatch();
-		Fonts.setup();
-		buffer = new FrameBuffer(Format.RGBA8888, Main.width, Main.height, false);
+
+		//bunch of stuff for texturepacking //
 		FileHandle atlas_handle = Gdx.files.absolute("D:\\Code\\Eclipse\\Hexcity\\android\\assets\\atlas_image.atlas");
 		if(!atlas_handle.exists()){
 			atlas_handle=Gdx.files.internal("atlas_image.atlas");
 		}
 		atlas = new TextureAtlas(atlas_handle);
+		
+		//set up my viewport to be the base resolution//
 		port = new FitViewport(Main.width, Main.height);
-		port.apply();
+		//make a scene2d stage using the viewport//
 		stage = new Stage(port);
 		cam=(OrthographicCamera) stage.getCamera();
-		cam.update();
 		batch = (SpriteBatch) stage.getBatch();
 		Gdx.input.setInputProcessor(stage);
+		//I implemented my own screen system so I have more control over it (yay transitions and screenshake)
 		setScreen(new MainScreen());	
 	}
 
 	@Override
 	public void resize (int width, int height) {
-		//		port.update((width/128)*128, (height/64)*64);
+		//override the resize method to scale by integer value and center
+		//this is called when the game is first opened
 		int xScale =(width/128);
 		int yScale =(height/64);
 		int scale = Math.min(xScale, yScale);
 		int w = scale*128;
 		int h =	scale*64;
-		port.update(w, h);
 		port.setScreenBounds(Gdx.graphics.getWidth()/2-w/2, Gdx.graphics.getHeight()/2-h/2, w, h);
 		port.apply();
-		cam.update();
 	}
 
 	public void setScale(int scale){
@@ -119,7 +115,6 @@ public class Main extends ApplicationAdapter {
 		switch(type){
 		case LEFT:
 			screen.setPosition(Main.width, 0);
-			//			Action a = ;
 			screen.addAction(Actions.moveTo(0, 0, speed, interp));
 			previousScreen.addAction(Actions.moveTo(-Main.width, 0, speed, interp));
 			break;
@@ -135,19 +130,17 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		//clear the screen
 		Gdx.gl.glClearColor(Colours.dark.r, Colours.dark.g, Colours.dark.b, 1);
 		Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
+		//update everything
 		update(Gdx.graphics.getDeltaTime());
+		//draw the stage
 		stage.draw();
 	}
 
-	public void drawFPS(Batch batch){
-		//		Fonts.font.setColor(Colours.light);
-		//		Fonts.font.draw(batch, "FPS: "+Gdx.graphics.getFramesPerSecond(), 0, Main.height);
-	}
-
-
 	public void update(float delta){
+		//ticks is just a generally useful variable to have around
 		ticks+=delta;
 		stage.act(delta);
 	}

@@ -27,6 +27,7 @@ public class Tile extends Actor{
 	boolean showScore;
 	int lastScore;
 	public enum TileType{
+		//java enums are way cool
 		Hut(Main.atlas.findRegion("hut")), 
 		Forester(Main.atlas.findRegion("logger")),
 		Garden(Main.atlas.findRegion("garden")),
@@ -35,25 +36,25 @@ public class Tile extends Actor{
 		Circle(Main.atlas.findRegion("meeting")),
 		Empty(Main.atlas.findRegion("empty")),
 		Forest(Main.atlas.findRegion("trees"));
-
 		public TextureRegion region;
 		TileType(TextureRegion region){
 			this.region=region;
 		}
 	}
-	TileType type=TileType.Empty;
+	TileType type;
 	int x,y;
 	public Tile(int x, int y) {
 		this.x=x;
 		this.y=y;
 		setType(TileType.Empty);
+		//I want to use the default inputlistener so I'm setting the size of the actor to be smaller than how big it looks
 		setSize(tileWidth-tileTapOffsetX*2, tileHeight-tileTapOffsetY*2);
 		setPosition(x*11 +tileTapOffsetX, y*8-x*4 +tileTapOffsetY);
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				if(type!=TileType.Empty) return false;
 				if(MainScreen.self.typePicked==null) return false;
-				if(!MainScreen.self.grid.lastTilePlaced.isAdjacentTo(Tile.this))return false;
+				if(!MainScreen.self.grid.lastTilePlaced.isAdjacentTo(Tile.this)) return false;
 				setType(MainScreen.self.typePicked.type);
 				placementEffect();
 				MainScreen.self.tilePlaced(Tile.this);
@@ -69,9 +70,8 @@ public class Tile extends Actor{
 	}
 
 	public void placementEffect(){
-
+		//Ahh I wish switches didn't have the damn fall-though stuff
 		int counter=0;
-
 		switch (type) {
 		case Circle:
 			score(isCompletelySurrounded()?6:1);
@@ -113,7 +113,6 @@ public class Tile extends Actor{
 					else{
 						if(t==this)t.score(2);
 					}
-
 				}
 			}
 			break;
@@ -147,7 +146,10 @@ public class Tile extends Actor{
 		default:
 			break;
 		}
+		checkSurroundingTiles();
+	}
 
+	public void checkSurroundingTiles(){
 		for(Tile t:getAdjacentTiles(1, false)){
 			switch(t.type){
 			case Circle:
@@ -165,33 +167,26 @@ public class Tile extends Actor{
 				break;
 			}
 		}
+		
 	}
-
+	
 	Runnable invertShowScore = new Runnable() {
 		@Override
 		public void run() {
 			Tile.this.showScore=!Tile.this.showScore;
 		}
 	};
-	float delay =.7f;
-
-
+	static final float delay =.7f;
 	public void score(int points){
-
 		MainScreen.self.score.addPoints(points);
 		showScore=false;
 		clearActions();
 		lastScore=points;
 		SequenceAction scoreFlash = new SequenceAction();
-
 		scoreFlash.addAction(Actions.run(invertShowScore));
 		scoreFlash.addAction(Actions.delay(delay));
 		scoreFlash.addAction(Actions.run(invertShowScore));
-
-
-
 		addAction(scoreFlash);
-
 	}
 
 	public ArrayList<Tile> getAdjacentTiles(int dist, boolean includeSelf){
@@ -199,10 +194,7 @@ public class Tile extends Actor{
 		for(int x=-dist;x<=dist;x++){
 			for(int y=-dist;y<=dist;y++){
 				Tile t = MainScreen.self.grid.getTile(this.x+x, this.y+y);
-
-				if(!includeSelf && t==this){
-					continue;
-				}
+				if(!includeSelf && t==this) continue;
 				if(t!=null&&t.getDistance(this)<=dist){
 					tiles.add(t);
 				}
@@ -228,8 +220,6 @@ public class Tile extends Actor{
 		}
 		super.draw(batch, parentAlpha);
 	}
-
-
 
 	private void showHitbox(Batch batch){
 		batch.setColor(1,0,0,.5f);

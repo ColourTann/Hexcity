@@ -39,7 +39,6 @@ public abstract class Screen extends Group{
 		if(Main.self.getState()==MainState.Paused)return;
 		setPosition(getX()+(float)(Math.sin(Main.ticks*shakeFrequency)*shakeMagnitude), 
 				getY()+(float) (Math.cos((Main.ticks+100)*shakeFrequency)*shakeMagnitude));
-
 		shakeMagnitude*=Math.pow(shakeDrag, delta);
 		tickParticles(delta);
 		preTick(delta);

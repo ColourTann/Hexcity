@@ -1,14 +1,10 @@
 package com.tann.hexcity.screens.mainScreen.ui;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.tann.hexcity.Main;
 
 import game.util.Colours;
-import game.util.Draw;
 import game.util.TannFont;
 
 public class ScoreKeeper extends Actor{
