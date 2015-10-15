@@ -1,17 +1,26 @@
-package com.tann.hexcity.screens.mainScreen;
+package com.tann.hexcity.screens.gameScreen;
 
 import java.util.ArrayList;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.tann.hexcity.Main;
-import com.tann.hexcity.screens.mainScreen.ui.MenuButton;
-import com.tann.hexcity.screens.mainScreen.ui.ScoreKeeper;
-import com.tann.hexcity.screens.mainScreen.ui.TilePicker;
-import com.tann.hexcity.screens.mainScreen.ui.TurnTracker;
+import com.tann.hexcity.screens.gameScreen.ui.ScoreKeeper;
+import com.tann.hexcity.screens.gameScreen.ui.TilePicker;
+import com.tann.hexcity.screens.gameScreen.ui.TurnTracker;
+import com.tann.hexcity.screens.menu.PauseButton;
+
 import game.util.Colours;
 import game.util.Screen;
 import game.util.TannFont;
 
-public class MainScreen extends Screen{
+public class GameScreen extends Screen{
+	public enum GameType{
+		Ten("10 turns"), Fifteen("15 turns"), Twenty("20 turns"), Hammurabi("campaign");	
+		public String description;
+		GameType(String description){
+			this.description=description;
+		}
+	}
 	//layout constants
 	public static final int gridX=23,gridY=3;
 	public static final int pickerX=3, pickerY=1, pickerGap = 11;
@@ -23,12 +32,33 @@ public class MainScreen extends Screen{
 	public TilePicker typePicked;
 	Grid grid = new Grid();
 	ScoreKeeper score = new ScoreKeeper();
-	MenuButton button = new MenuButton();
+	PauseButton button = new PauseButton();
 	ArrayList<TilePicker> pickers = new ArrayList<TilePicker>();
-	TurnTracker tracker = new TurnTracker();
-	public static MainScreen self;
-	public MainScreen() {
+	TurnTracker tracker;
+	public static GameScreen self;
+	GameType type;
+	public GameScreen(GameType type) {
 		self=this;
+		this.type=type;
+		int turns=0;
+		switch(type){
+		case Ten:
+			turns=10;
+			break;
+		case Fifteen:
+			turns=15;
+			break;
+		case Twenty:
+			turns=20;
+			break;
+		case Hammurabi:
+			turns=10;
+			break;	
+		default:
+			break;
+		
+		}
+		tracker= new TurnTracker(turns);
 		addActor(tracker);
 		tracker.setPosition(turnX, turnY);
 		addActor(grid);
@@ -46,7 +76,7 @@ public class MainScreen extends Screen{
 			picker.setPosition(pickerX, pickerY+pickerGap*i);
 		}	
 	}
-	
+
 	public void reset(){
 		bonusHutTurn=false;
 		grid.reset();
@@ -54,7 +84,7 @@ public class MainScreen extends Screen{
 		tracker.reset();
 		for(TilePicker p:pickers)p.reset();
 	}
-	
+
 	@Override
 	public void preDraw(Batch batch) {
 	}

@@ -1,8 +1,8 @@
-package com.tann.hexcity.screens.mainScreen.ui;
+package com.tann.hexcity.screens.gameScreen.ui;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.tann.hexcity.screens.mainScreen.MainScreen;
+import com.tann.hexcity.screens.gameScreen.GameScreen;
 
 import game.util.Colours;
 import game.util.Draw;
@@ -13,7 +13,8 @@ public class TurnTracker extends Actor{
 	int blipYGap=4;
 	int turns=10;
 	int turnsTaken=0;
-	public TurnTracker() {
+	public TurnTracker(int turns) {
+		this.turns=turns;
 		setSize(blipXGap*5+blipSize, blipYGap*4+blipSize);
 	}
 	
@@ -37,7 +38,7 @@ public class TurnTracker extends Actor{
 	public void incrementTurns() {
 		turnsTaken ++;
 		if(turnsTaken==turns){
-			MainScreen.self.outOfTurns();
+			GameScreen.self.outOfTurns();
 		}
 	}
 

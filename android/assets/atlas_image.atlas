@@ -1,104 +1,153 @@
 
 atlas_image.png
-size: 256,32
+size: 128,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-available
+font/font
   rotate: false
-  xy: 2, 2
-  size: 16, 9
-  orig: 16, 9
-  offset: 0, 0
-  index: -1
-empty
-  rotate: false
-  xy: 20, 2
-  size: 16, 9
-  orig: 16, 9
-  offset: 0, 0
-  index: -1
-font
-  rotate: false
-  xy: 2, 13
+  xy: 2, 109
   size: 106, 17
   orig: 106, 17
   offset: 0, 0
   index: -1
-garden
-  rotate: false
-  xy: 38, 2
-  size: 16, 9
-  orig: 16, 9
-  offset: 0, 0
-  index: -1
-hut
-  rotate: false
-  xy: 56, 2
-  size: 16, 9
-  orig: 16, 9
-  offset: 0, 0
-  index: -1
-logger
-  rotate: false
-  xy: 74, 2
-  size: 16, 9
-  orig: 16, 9
-  offset: 0, 0
-  index: -1
-meeting
-  rotate: false
-  xy: 92, 2
-  size: 16, 9
-  orig: 16, 9
-  offset: 0, 0
-  index: -1
 pixel
   rotate: false
-  xy: 110, 6
+  xy: 38, 40
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
-settings
+tile/available
   rotate: false
-  xy: 110, 9
-  size: 21, 21
-  orig: 21, 21
-  offset: 0, 0
-  index: -1
-shrine
-  rotate: false
-  xy: 133, 21
+  xy: 110, 117
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
-temple
+tile/empty
   rotate: false
-  xy: 133, 10
+  xy: 110, 106
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
-tilescore
+tile/garden
   rotate: false
-  xy: 151, 21
+  xy: 2, 32
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
-trees
+tile/hut
   rotate: false
-  xy: 151, 10
+  xy: 44, 98
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
-whitehex
+tile/logger
   rotate: false
-  xy: 169, 21
+  xy: 2, 21
   size: 16, 9
   orig: 16, 9
+  offset: 0, 0
+  index: -1
+tile/meeting
+  rotate: false
+  xy: 20, 32
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
+tile/score
+  rotate: false
+  xy: 44, 87
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
+tile/shrine
+  rotate: false
+  xy: 62, 98
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
+tile/temple
+  rotate: false
+  xy: 2, 10
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
+tile/trees
+  rotate: false
+  xy: 20, 21
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
+tile/whitehex
+  rotate: false
+  xy: 44, 76
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
+ui/arrow
+  rotate: false
+  xy: 62, 80
+  size: 7, 5
+  orig: 7, 5
+  offset: 0, 0
+  index: -1
+ui/cuneiform1
+  rotate: false
+  xy: 2, 43
+  size: 19, 64
+  orig: 19, 64
+  offset: 0, 0
+  index: -1
+ui/cuneiform2
+  rotate: false
+  xy: 23, 43
+  size: 19, 64
+  orig: 19, 64
+  offset: 0, 0
+  index: -1
+ui/lock
+  rotate: false
+  xy: 2, 2
+  size: 5, 6
+  orig: 5, 6
+  offset: 0, 0
+  index: -1
+ui/smallergarden
+  rotate: false
+  xy: 62, 87
+  size: 15, 9
+  orig: 15, 9
+  offset: 0, 0
+  index: -1
+ui/smallerlogger
+  rotate: false
+  xy: 80, 98
+  size: 15, 9
+  orig: 15, 9
+  offset: 0, 0
+  index: -1
+ui/smallershrine
+  rotate: false
+  xy: 20, 10
+  size: 15, 9
+  orig: 15, 9
+  offset: 0, 0
+  index: -1
+ui/smallertile
+  rotate: false
+  xy: 44, 65
+  size: 15, 9
+  orig: 15, 9
   offset: 0, 0
   index: -1

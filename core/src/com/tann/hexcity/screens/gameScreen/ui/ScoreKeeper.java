@@ -1,4 +1,4 @@
-package com.tann.hexcity.screens.mainScreen.ui;
+package com.tann.hexcity.screens.gameScreen.ui;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -21,7 +21,7 @@ public class ScoreKeeper extends Actor{
 		String scoreString ="";
 		scoreString=score+"";
 		while(scoreString.length()<3)scoreString="0"+scoreString;
-		TannFont.font.drawString(batch, getX(), getY(), scoreString, true);
+		TannFont.font.drawString(batch, scoreString, (int)getX(), (int)getY(), true);
 		
 		
 		super.draw(batch, parentAlpha);

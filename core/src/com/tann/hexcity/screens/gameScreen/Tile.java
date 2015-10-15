@@ -1,4 +1,4 @@
-package com.tann.hexcity.screens.mainScreen;
+package com.tann.hexcity.screens.gameScreen;
 
 import java.util.ArrayList;
 
@@ -20,22 +20,22 @@ public class Tile extends Actor{
 	public static final int tileHeight=9;
 	static final int tileTapOffsetX=3;
 	static final int tileTapOffsetY=1;
-	static TextureRegion availableTileRegion = Main.atlas.findRegion("available");
-	static TextureRegion scoreRegion = Main.atlas.findRegion("tilescore");
+	static TextureRegion availableTileRegion = Main.atlas.findRegion("tile/available");
+	static TextureRegion scoreRegion = Main.atlas.findRegion("tile/score");
 	ArrayList<TileType> adjacentTypes = new ArrayList<>();
 	boolean gardenBonusScored;
 	boolean showScore;
 	int lastScore;
 	public enum TileType{
 		//java enums are way cool
-		Hut(Main.atlas.findRegion("hut")), 
-		Forester(Main.atlas.findRegion("logger")),
-		Garden(Main.atlas.findRegion("garden")),
-		Temple(Main.atlas.findRegion("temple")),
-		Shrine(Main.atlas.findRegion("shrine")),
-		Circle(Main.atlas.findRegion("meeting")),
-		Empty(Main.atlas.findRegion("empty")),
-		Forest(Main.atlas.findRegion("trees"));
+		Hut(Main.atlas.findRegion("tile/hut")), 
+		Forester(Main.atlas.findRegion("tile/logger")),
+		Garden(Main.atlas.findRegion("tile/garden")),
+		Temple(Main.atlas.findRegion("tile/temple")),
+		Shrine(Main.atlas.findRegion("tile/shrine")),
+		Circle(Main.atlas.findRegion("tile/meeting")),
+		Empty(Main.atlas.findRegion("tile/empty")),
+		Forest(Main.atlas.findRegion("tile/trees"));
 		public TextureRegion region;
 		TileType(TextureRegion region){
 			this.region=region;
@@ -53,11 +53,11 @@ public class Tile extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				if(type!=TileType.Empty) return false;
-				if(MainScreen.self.typePicked==null) return false;
-				if(!MainScreen.self.grid.lastTilePlaced.isAdjacentTo(Tile.this)) return false;
-				setType(MainScreen.self.typePicked.type);
+				if(GameScreen.self.typePicked==null) return false;
+				if(!GameScreen.self.grid.lastTilePlaced.isAdjacentTo(Tile.this)) return false;
+				setType(GameScreen.self.typePicked.type);
 				placementEffect();
-				MainScreen.self.tilePlaced(Tile.this);
+				GameScreen.self.tilePlaced(Tile.this);
 				return false;
 			}
 		});
@@ -117,7 +117,7 @@ public class Tile extends Actor{
 			}
 			break;
 		case Hut:
-			MainScreen.self.bonusHutTurn=!MainScreen.self.bonusHutTurn;
+			GameScreen.self.bonusHutTurn=!GameScreen.self.bonusHutTurn;
 			score(1);
 			break;
 		case Shrine:
@@ -178,7 +178,7 @@ public class Tile extends Actor{
 	};
 	static final float delay =.7f;
 	public void score(int points){
-		MainScreen.self.score.addPoints(points);
+		GameScreen.self.score.addPoints(points);
 		showScore=false;
 		clearActions();
 		lastScore=points;
@@ -193,7 +193,7 @@ public class Tile extends Actor{
 		ArrayList<Tile> tiles= new ArrayList<>();
 		for(int x=-dist;x<=dist;x++){
 			for(int y=-dist;y<=dist;y++){
-				Tile t = MainScreen.self.grid.getTile(this.x+x, this.y+y);
+				Tile t = GameScreen.self.grid.getTile(this.x+x, this.y+y);
 				if(!includeSelf && t==this) continue;
 				if(t!=null&&t.getDistance(this)<=dist){
 					tiles.add(t);
@@ -210,13 +210,13 @@ public class Tile extends Actor{
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		TextureRegion tr = type.region;
-		if(type==TileType.Empty && Tile.this.isAdjacentTo(MainScreen.self.grid.lastTilePlaced)) tr=availableTileRegion;
+		if(type==TileType.Empty && Tile.this.isAdjacentTo(GameScreen.self.grid.lastTilePlaced)) tr=availableTileRegion;
 		if(showScore) tr=scoreRegion;
 		batch.setColor(1,1,1,1);
 		Draw.draw(batch, tr, getX()-tileTapOffsetX, getY()-tileTapOffsetY);
 		if(showScore){
 			batch.setColor(lastScore>0?Colours.straw:Colours.earth);
-			TannFont.font.drawString(batch, getX()+1, getY()+1, (lastScore>=0?"+":"")+lastScore, false);
+			TannFont.font.drawString(batch, (lastScore>=0?"+":"")+lastScore, (int)getX()+1, (int)getY()+1, false);
 		}
 		super.draw(batch, parentAlpha);
 	}

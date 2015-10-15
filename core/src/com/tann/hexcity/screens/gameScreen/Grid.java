@@ -1,10 +1,10 @@
-package com.tann.hexcity.screens.mainScreen;
+package com.tann.hexcity.screens.gameScreen;
 
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.tann.hexcity.screens.mainScreen.Tile.TileType;
+import com.tann.hexcity.screens.gameScreen.Tile.TileType;
 
 public class Grid extends Group{
 	//two lists of tiles, one for getting locations, one for iterating through all tiles

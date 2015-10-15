@@ -2,29 +2,23 @@ package com.tann.hexcity;
 
 
 import game.util.Colours;
-import game.util.Draw;
 import game.util.Screen;
+import game.util.TextRenderer;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.tann.hexcity.screens.mainScreen.MainScreen;
+import com.tann.hexcity.screens.gameScreen.GameScreen;
+import com.tann.hexcity.screens.titleScreen.TitleScreen;
 
 
 public class Main extends ApplicationAdapter {
@@ -36,7 +30,7 @@ public class Main extends ApplicationAdapter {
 	public static Main self;
 	public static int scale=1;
 	public static boolean debug = true;
-	Screen currentScreen;
+	public Screen currentScreen;
 	Screen previousScreen;
 	public static float ticks;
 	public enum MainState{Normal, Paused}
@@ -53,7 +47,7 @@ public class Main extends ApplicationAdapter {
 		case Applet:
 			break;
 		case Desktop:
-			setScale(8);
+			setScale(10);
 			break;
 		case HeadlessDesktop:
 			break;
@@ -80,7 +74,9 @@ public class Main extends ApplicationAdapter {
 		batch = (SpriteBatch) stage.getBatch();
 		Gdx.input.setInputProcessor(stage);
 		//I implemented my own screen system so I have more control over it (yay transitions and screenshake)
-		setScreen(new MainScreen());	
+		TextRenderer.setImage("arrow", Main.atlas.findRegion("ui/arrow"));
+		setScreen(new TitleScreen());	
+		
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.tann.hexcity.Main;
 
 public class TannFont {
-	public static TannFont font = new TannFont(Main.atlas.findRegion("font"));
+	public static TannFont font = new TannFont(Main.atlas.findRegion("font/font"));
 	HashMap<Character, TextureRegion> glyphs = new HashMap<>();
 	//this is not really ideal, I could make it dynamically-detect heights but I think I'll only ever be using one font
 	int[] heights= new int[]{5,5,5}; 
@@ -46,7 +46,7 @@ public class TannFont {
 		int spaceWidth=1;
 		glyphs.put(' ', new TextureRegion(font, font.getRegionWidth()-spaceWidth, 0, spaceWidth, 0));
 	}
-	public void drawString(Batch batch, float x, float y, String text, boolean fixedWidth){
+	public void drawString(Batch batch, String text, int x, int y, boolean fixedWidth){
 		//will probably want to cache this
 		for(char c:text.toCharArray()){
 			TextureRegion t= glyphs.get(c);
@@ -77,5 +77,11 @@ public class TannFont {
 	}
 	public int getHeight(){
 		return 5;
+	}
+	public int getLineHeight(){
+		return 7;
+	}
+	public int getSpaceWidth(){
+		return 4;
 	}
 }
