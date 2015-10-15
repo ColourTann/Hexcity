@@ -22,7 +22,7 @@ public class TitleScreen extends Screen{
 	static final int titleOffsetX=27;
 	static final int titleOffsetY=48;
 	
-	static final int buttonX=25;
+	static final int buttonX=26;
 	static final int buttonY=28;
 	static final int buttonXGap=40;
 	static final int buttonYGap=12;
