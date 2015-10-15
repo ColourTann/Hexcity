@@ -7,6 +7,7 @@ import game.util.Fonts;
 import game.util.Screen;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -24,7 +25,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.tann.hexcity.screens.MainScreen;
+import com.tann.hexcity.screens.mainScreen.MainScreen;
 
 
 public class Main extends ApplicationAdapter {
@@ -34,7 +35,7 @@ public class Main extends ApplicationAdapter {
 	OrthographicCamera cam;
 	public static TextureAtlas atlas;
 	public static Main self;
-	public static int scale=10;
+	public static int scale=1;
 	public static boolean debug = true;
 	Screen currentScreen;
 	Screen previousScreen;
@@ -42,19 +43,20 @@ public class Main extends ApplicationAdapter {
 	public static float ticks;
 	public enum MainState{Normal, Paused}
 	Viewport port;
-	
+
 	SpriteBatch screenBatch;
-	
+
 	@Override
 	public void create () {
+		self=this;
 		switch(Gdx.app.getType()){
 		case Android:
-//			scale = Gdx.graphics.getWidth()/Main.width;
+			//			scale = Gdx.graphics.getWidth()/Main.width;
 			break;
 		case Applet:
 			break;
 		case Desktop:
-			
+			setScale(8);
 			break;
 		case HeadlessDesktop:
 			break;
@@ -64,56 +66,29 @@ public class Main extends ApplicationAdapter {
 			break;
 		default:
 			break;
-		
+
 		}
 		screenBatch = new SpriteBatch();
-
-		self=this;
-
 		Fonts.setup();
-
-
-
 		buffer = new FrameBuffer(Format.RGBA8888, Main.width, Main.height, false);
-
-		atlas= new TextureAtlas(Gdx.files.internal("atlas_image.atlas"));
-		
-
+		FileHandle atlas_handle = Gdx.files.absolute("D:\\Code\\Eclipse\\Hexcity\\android\\assets\\atlas_image.atlas");
+		if(!atlas_handle.exists()){
+			atlas_handle=Gdx.files.internal("atlas_image.atlas");
+		}
+		atlas = new TextureAtlas(atlas_handle);
 		port = new FitViewport(Main.width, Main.height);
-
-		
 		port.apply();
 		stage = new Stage(port);
-		
 		cam=(OrthographicCamera) stage.getCamera();
-		
-		
-
-		System.out.println(cam.position);
 		cam.update();
 		batch = (SpriteBatch) stage.getBatch();
 		Gdx.input.setInputProcessor(stage);
-		stage.addListener(new InputListener(){
-			public boolean keyDown (InputEvent event, int keycode) {
-
-				
-				return false;
-			}
-
-
-		});
-//		Gdx.gl.glViewport(0, 0, Main.width-200, Main.height);
-//		
-		setScale(scale);
 		setScreen(new MainScreen());	
-
-		
-
 	}
 
 	@Override
 	public void resize (int width, int height) {
-//		port.update((width/128)*128, (height/64)*64);
+		//		port.update((width/128)*128, (height/64)*64);
 		int xScale =(width/128);
 		int yScale =(height/64);
 		int scale = Math.min(xScale, yScale);
@@ -124,16 +99,11 @@ public class Main extends ApplicationAdapter {
 		port.apply();
 		cam.update();
 	}
-	
+
 	public void setScale(int scale){
-		
+		Main.scale=scale;
 		Gdx.graphics.setDisplayMode(Main.width*scale, Main.height*scale, false);
-		
-		
 	}
-
-
-
 
 	private MainState state=MainState.Normal;
 	public MainState getState(){
@@ -172,8 +142,8 @@ public class Main extends ApplicationAdapter {
 	}
 
 	public void drawFPS(Batch batch){
-//		Fonts.font.setColor(Colours.light);
-//		Fonts.font.draw(batch, "FPS: "+Gdx.graphics.getFramesPerSecond(), 0, Main.height);
+		//		Fonts.font.setColor(Colours.light);
+		//		Fonts.font.draw(batch, "FPS: "+Gdx.graphics.getFramesPerSecond(), 0, Main.height);
 	}
 
 
