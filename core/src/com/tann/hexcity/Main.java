@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tann.hexcity.screens.gameScreen.GameScreen;
+import com.tann.hexcity.screens.gameScreen.Tile.TileType;
 import com.tann.hexcity.screens.titleScreen.TitleScreen;
 
 
@@ -75,6 +76,9 @@ public class Main extends ApplicationAdapter {
 		Gdx.input.setInputProcessor(stage);
 		//I implemented my own screen system so I have more control over it (yay transitions and screenshake)
 		TextRenderer.setImage("arrow", Main.atlas.findRegion("ui/arrow"));
+		for(TileType type:TileType.values()){
+			TextRenderer.setImage(type.toString().toLowerCase(), type.region);
+		}
 		setScreen(new TitleScreen());	
 		
 	}

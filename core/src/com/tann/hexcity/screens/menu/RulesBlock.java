@@ -15,8 +15,19 @@ public class RulesBlock extends Actor{
 	int gap=2;
 	String[] text;
 	int index=0;
-	int wrapWidth;
-	public RulesBlock(String[] text, int wrapWidth) {
+	int wrapWidth=83;
+	int rulesX, rulesY, rulesWidth, rulesHeight;
+	
+	public RulesBlock(String text) {
+		setup(new String[]{text}, wrapWidth);
+	}
+	
+	public RulesBlock(String[] text) {
+		setup(text, wrapWidth);
+	}
+	
+	public void setup(String[] text, int wrapWidth){
+		setSize(Main.width, Main.height);
 		this.text=text;
 		this.wrapWidth=wrapWidth;
 		next();
@@ -34,8 +45,11 @@ public class RulesBlock extends Actor{
 			return;
 		}
 		tr = new TextRenderer(text[index], wrapWidth);
-		setSize(tr.getWidth()+gap*2, tr.getHeight()+gap*2);
-		setPosition(Main.width/2-getWidth()/2, Main.height/2-getHeight()/2);
+		rulesWidth=(int) (tr.getWidth()+gap*2);
+		rulesHeight=(int) (tr.getHeight()+gap*2);
+		rulesX=Main.width/2-rulesWidth/2;
+		rulesY=Main.height/2-rulesHeight/2;
+		
 		index++;
 	}
 
@@ -44,11 +58,11 @@ public class RulesBlock extends Actor{
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
 		batch.setColor(Colours.grass);
-		Draw.fillRectangle(batch, getX(), getY(), getWidth(), getHeight());
+		Draw.fillRectangle(batch, (int)getX()+rulesX, (int)getY()+rulesY, rulesWidth, rulesHeight);
 		batch.setColor(Colours.dark);
-		Draw.fillRectangle(batch, getX()+1, getY()+1, getWidth()-2, getHeight()-2);
+		Draw.fillRectangle(batch, (int)getX()+rulesX+1, (int)getY()+rulesY+1, rulesWidth-2, rulesHeight-2);
 		batch.setColor(Colours.white);
-		tr.setPosition(getX()+gap, getY()+gap);
+		tr.setPosition((int)getX()+rulesX+gap, (int)getY()+rulesY+gap);
 		tr.draw(batch, parentAlpha);
 	}
 }

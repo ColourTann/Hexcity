@@ -25,14 +25,10 @@ public class TextRenderer extends Actor{
 	int fontHeight;
 	int align = Align.center;
 	private FrameBuffer buffer;
-
-
 	
 	public TextRenderer(String text){
 		setup(text, defaultFont, (int)font.getWidth(text), Align.center);
 	}
-	
-
 
 	public TextRenderer(String text, int boxWidth) {
 		setup(text, defaultFont, boxWidth, Align.center);
@@ -72,8 +68,7 @@ public class TextRenderer extends Actor{
 	OrthographicCamera bufferCam;
 	private void setupLines(String entireText){
 
-		int baseLineHeight = (int) (font.getLineHeight()); //the subtraction here is dodgy, I think I might need to tune it based on which font we pick :S
-		//it's not my code though, the libgdx font.drawWrapped draws with the same big distance between lines so...
+		int baseLineHeight = font.getLineHeight(); 
 		int currentX=0;
 		int currentY=font.getHeight();
 		int lineHeight = baseLineHeight;
@@ -157,7 +152,7 @@ public class TextRenderer extends Actor{
 				}
 				if(specialMode){
 					//adjust line height based on texture height
-					int diff = tr.getRegionHeight()-baseLineHeight;
+					int diff = tr.getRegionHeight()-baseLineHeight+1;
 					int newDiff = diff/2-(lineHeight-baseLineHeight);
 					if(newDiff>0){
 						lineHeight+=newDiff;
@@ -184,10 +179,14 @@ public class TextRenderer extends Actor{
 		batch.setColor(defaultColour);
 		int bufferWidth=(int)(wrapWidth);
 		int bufferHeight=(int) (currentY);
-		if(bufferWidth%2!=0)bufferWidth++;
-		if(bufferHeight%2!=0)bufferHeight++;
-		buffer = new FrameBuffer(Format.RGBA8888, bufferWidth, bufferHeight, false);
 		setSize(bufferWidth, bufferHeight);
+		bonusBonusY=0;
+		if(bufferWidth%2!=0)bufferWidth++;
+		if(bufferHeight%2!=0){
+			bufferHeight++;
+			bonusBonusY=-1;
+		}
+		buffer = new FrameBuffer(Format.RGBA8888, bufferWidth, bufferHeight, false);
 		bufferCam = new OrthographicCamera(buffer.getWidth(), buffer.getHeight());
 		bufferCam.translate((int)(buffer.getWidth()/2), (int)(buffer.getHeight()/2));
 		bufferCam.update();
@@ -238,6 +237,8 @@ public class TextRenderer extends Actor{
 		}
 	}
 
+	static int bonusBonusY;
+	
 	private class TextPosition{
 		String text; 
 		TextureRegion tr;
@@ -255,11 +256,10 @@ public class TextRenderer extends Actor{
 			if(tr!=null) {
 				Color old = batch.getColor();
 				batch.setColor(Colours.white);
-				Draw.draw(batch, tr, (int)(x+bonusX), (int)(buffer.getHeight()-bonusY-y+tr.getRegionHeight()/2-font.getHeight()/2));
+				Draw.draw(batch, tr, (int)(x+bonusX), (int)(buffer.getHeight()-y+font.getLineHeight()/2f-tr.getRegionHeight()/2f-bonusY+bonusBonusY));
 				batch.setColor(old);
 			}
-			else font.drawString(batch, text, x+bonusX, buffer.getHeight()-y-bonusY, false);
-//			Draw.fillRectangle(batch, 0, 0, 2, 2);
+			else font.drawString(batch, text, x+bonusX, buffer.getHeight()-y-bonusY+bonusBonusY, false);
 		}
 	}
 }

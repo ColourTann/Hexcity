@@ -14,6 +14,7 @@ import com.tann.hexcity.Main;
 import game.util.Colours;
 import game.util.Draw;
 import game.util.TannFont;
+import game.util.TextRenderer;
 
 public class Tile extends Actor{
 	public static final int tileWidth=16;
@@ -28,17 +29,19 @@ public class Tile extends Actor{
 	int lastScore;
 	public enum TileType{
 		//java enums are way cool
-		Hut(Main.atlas.findRegion("tile/hut")), 
-		Forester(Main.atlas.findRegion("tile/logger")),
-		Garden(Main.atlas.findRegion("tile/garden")),
-		Temple(Main.atlas.findRegion("tile/temple")),
-		Shrine(Main.atlas.findRegion("tile/shrine")),
-		Circle(Main.atlas.findRegion("tile/meeting")),
-		Empty(Main.atlas.findRegion("tile/empty")),
-		Forest(Main.atlas.findRegion("tile/trees"));
+		Hut(Main.atlas.findRegion("tile/hut"), "+1 point[n]Place another free hut."), 
+		Forester(Main.atlas.findRegion("tile/logger"), "+1 point[n]Cut down all adjacent trees for +1 point each."),
+		Garden(Main.atlas.findRegion("tile/garden"), "+2 points[n]+4 points instead if in a group of exactly 3 adjacent gardens."),
+		Temple(Main.atlas.findRegion("tile/temple"), "+1 point per different type of tile within one hex"),
+		Shrine(Main.atlas.findRegion("tile/shrine"), "+5 points if more than 2 hexes away from all other shrines."),
+		Circle(Main.atlas.findRegion("tile/meeting"), "+1 point[n] +5 more points if completely surrounded."),
+		Empty(Main.atlas.findRegion("tile/empty"), null),
+		Forest(Main.atlas.findRegion("tile/trees"), "Must be cut down with a forester to build on top. Doesn't count for circles or temples.");
 		public TextureRegion region;
-		TileType(TextureRegion region){
+		public String rulesText;
+		TileType(TextureRegion region, String rulesText){
 			this.region=region;
+			this.rulesText=rulesText;
 		}
 	}
 	TileType type;
