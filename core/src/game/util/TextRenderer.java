@@ -1,6 +1,8 @@
 package game.util;
 
 import java.util.HashMap;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -190,6 +192,7 @@ public class TextRenderer extends Actor{
 		bufferCam = new OrthographicCamera(buffer.getWidth(), buffer.getHeight());
 		bufferCam.translate((int)(buffer.getWidth()/2), (int)(buffer.getHeight()/2));
 		bufferCam.update();
+		
 		buffer.bind();
 		buffer.begin();
 		batch.setProjectionMatrix(bufferCam.combined);
@@ -200,7 +203,9 @@ public class TextRenderer extends Actor{
 		}
 		batch.end();
 		buffer.end();
+		buffer.unbind();
 		buffer.getColorBufferTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		Main.self.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
 	private static HashMap<String, TextureRegion> textureMap = new HashMap<String, TextureRegion>();

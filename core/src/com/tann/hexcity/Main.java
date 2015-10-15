@@ -23,6 +23,7 @@ import com.tann.hexcity.screens.titleScreen.TitleScreen;
 
 
 public class Main extends ApplicationAdapter {
+	public static final float screenTransitionSpeed = .5f;
 	public static int width=128,height=64;
 	SpriteBatch batch;
 	Stage stage;
@@ -48,7 +49,7 @@ public class Main extends ApplicationAdapter {
 		case Applet:
 			break;
 		case Desktop:
-			setScale(10);
+			setScale(6);
 			break;
 		case HeadlessDesktop:
 			break;
@@ -79,7 +80,7 @@ public class Main extends ApplicationAdapter {
 		for(TileType type:TileType.values()){
 			TextRenderer.setImage(type.toString().toLowerCase(), type.region);
 		}
-		setScreen(new TitleScreen());	
+		setScreen(TitleScreen.get());	
 		
 	}
 

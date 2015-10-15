@@ -33,8 +33,13 @@ public class TitleScreen extends Screen{
 	
 	ArrayList<StartGameButton> butts = new ArrayList<>();
 	public static TitleScreen self;
-	public TitleScreen() {
-		self=this;
+	
+	public static TitleScreen get(){
+		if(self==null)self = new TitleScreen();
+		return self;
+	}
+	
+	private TitleScreen() {
 		for(GameType t:GameType.values()){
 			butts.add(new StartGameButton(t));
 		}
@@ -50,7 +55,7 @@ public class TitleScreen extends Screen{
 	}
 	
 	public void startGame(GameType type){
-		Main.self.setScreen(new GameScreen(type), TransitionType.LEFT, Interpolation.pow2Out, .5f);
+		Main.self.setScreen(new GameScreen(type), TransitionType.LEFT, Interpolation.pow2Out, Main.screenTransitionSpeed);
 	}
 	
 	@Override
