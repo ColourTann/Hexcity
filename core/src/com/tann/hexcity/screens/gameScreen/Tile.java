@@ -32,9 +32,9 @@ public class Tile extends Actor{
 		Hut(Main.atlas.findRegion("tile/hut"), "+1 point[n]Place another free hut."), 
 		Forester(Main.atlas.findRegion("tile/logger"), "+1 point[n]Cut down all adjacent trees for +1 point each."),
 		Garden(Main.atlas.findRegion("tile/garden"), "+2 points[n]+4 points instead if in a group of exactly 3 adjacent gardens."),
-		Temple(Main.atlas.findRegion("tile/temple"), "+1 point per different type of tile within one hex"),
+		Temple(Main.atlas.findRegion("tile/temple"), "+1 point per different adjacent tile. Other temples don't count due to religious competition by-laws."),
 		Shrine(Main.atlas.findRegion("tile/shrine"), "+5 points if more than 2 hexes away from all other shrines."),
-		Circle(Main.atlas.findRegion("tile/meeting"), "+1 point[n] +5 more points if completely surrounded."),
+		Circle(Main.atlas.findRegion("tile/meeting"), "+1 point[n]+4 more points if completely surrounded."),
 		Empty(Main.atlas.findRegion("tile/empty"), null),
 		Forest(Main.atlas.findRegion("tile/trees"), "Must be cut down with a forester to build on top. Doesn't count for circles or temples.");
 		public TextureRegion region;
@@ -77,7 +77,7 @@ public class Tile extends Actor{
 		int counter=0;
 		switch (type) {
 		case Circle:
-			score(isCompletelySurrounded()?6:1);
+			score(isCompletelySurrounded()?5:1);
 			break;
 		case Forester:
 			for(Tile t:getAdjacentTiles(1, false)){
@@ -144,7 +144,7 @@ public class Tile extends Actor{
 				adjacentTypes.add(t.type);
 				counter++;
 			}
-			score(counter+1);
+			score(counter);
 			break;
 		default:
 			break;
@@ -157,7 +157,7 @@ public class Tile extends Actor{
 			switch(t.type){
 			case Circle:
 				if(t.isCompletelySurrounded()){
-					t.score(5);
+					t.score(4);
 				}
 				break;
 			case Temple:

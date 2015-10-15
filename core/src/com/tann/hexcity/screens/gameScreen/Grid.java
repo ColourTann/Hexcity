@@ -8,7 +8,7 @@ import com.tann.hexcity.screens.gameScreen.Tile.TileType;
 
 public class Grid extends Group{
 	//two lists of tiles, one for getting locations, one for iterating through all tiles
-	static final int startingTrees=12;
+	private static final int startingTrees=14;
 	Tile[][] tiles = new Tile[9][11];
 	ArrayList<Tile> allTiles = new ArrayList<>();
 	public Tile lastTilePlaced;

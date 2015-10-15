@@ -7,8 +7,8 @@ repeat: none
 font/font
   rotate: false
   xy: 2, 109
-  size: 106, 17
-  orig: 106, 17
+  size: 109, 17
+  orig: 109, 17
   offset: 0, 0
   index: -1
 pixel
@@ -20,84 +20,84 @@ pixel
   index: -1
 tile/available
   rotate: false
-  xy: 110, 102
+  xy: 44, 98
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/empty
   rotate: false
-  xy: 2, 32
+  xy: 2, 17
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/garden
   rotate: false
-  xy: 44, 98
+  xy: 20, 32
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/hut
   rotate: false
-  xy: 2, 21
+  xy: 44, 87
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/logger
   rotate: false
-  xy: 20, 32
+  xy: 62, 98
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/meeting
   rotate: false
-  xy: 44, 87
+  xy: 2, 6
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/score
   rotate: false
-  xy: 62, 98
+  xy: 20, 21
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/shrine
   rotate: false
-  xy: 2, 10
+  xy: 44, 76
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/temple
   rotate: false
-  xy: 20, 21
+  xy: 62, 87
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/trees
   rotate: false
-  xy: 44, 76
+  xy: 80, 98
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/whitehex
   rotate: false
-  xy: 62, 87
+  xy: 20, 10
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 ui/arrow
   rotate: false
-  xy: 80, 91
+  xy: 113, 121
   size: 7, 5
   orig: 7, 5
   offset: 0, 0
@@ -118,42 +118,42 @@ ui/cuneiform2
   index: -1
 ui/lock
   rotate: false
-  xy: 2, 2
+  xy: 20, 2
   size: 5, 6
   orig: 5, 6
   offset: 0, 0
   index: -1
 ui/smallergarden
   rotate: false
-  xy: 80, 98
+  xy: 44, 65
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 ui/smallerlogger
   rotate: false
-  xy: 20, 10
+  xy: 62, 76
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 ui/smallershrine
   rotate: false
-  xy: 44, 65
+  xy: 80, 87
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 ui/smallertile
   rotate: false
-  xy: 62, 76
+  xy: 44, 54
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 ui/trophy
   rotate: false
-  xy: 110, 113
+  xy: 2, 28
   size: 16, 13
   orig: 16, 13
   offset: 0, 0
