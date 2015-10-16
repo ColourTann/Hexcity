@@ -1,8 +1,10 @@
-package com.tann.hexcity.screens.menu;
+package com.tann.hexcity.screens.menu.trophy;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.tann.hexcity.Main;
 
 import game.util.Colours;
@@ -14,6 +16,13 @@ public class TrophyButton extends Actor{
 	static final int gap=2;
 	public TrophyButton() {
 		setSize(trophy.getRegionWidth()+gap*2, trophy.getRegionHeight()+gap*2);
+		addListener(new InputListener(){
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				Main.self.currentScreen.pushActor(TrophyPanel.get());
+				return false;
+			}
+
+		});
 	}
 	
 	@Override

@@ -13,7 +13,7 @@ font/font
   index: -1
 pixel
   rotate: false
-  xy: 38, 40
+  xy: 2, 2
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
@@ -27,7 +27,7 @@ tile/available
   index: -1
 tile/empty
   rotate: false
-  xy: 2, 17
+  xy: 2, 16
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
@@ -55,7 +55,7 @@ tile/logger
   index: -1
 tile/meeting
   rotate: false
-  xy: 2, 6
+  xy: 2, 5
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
@@ -95,9 +95,16 @@ tile/whitehex
   orig: 16, 9
   offset: 0, 0
   index: -1
+ui/achievement
+  rotate: false
+  xy: 113, 117
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
 ui/arrow
   rotate: false
-  xy: 113, 121
+  xy: 98, 102
   size: 7, 5
   orig: 7, 5
   offset: 0, 0
@@ -153,8 +160,8 @@ ui/smallertile
   index: -1
 ui/trophy
   rotate: false
-  xy: 2, 28
-  size: 16, 13
-  orig: 16, 13
+  xy: 2, 27
+  size: 16, 14
+  orig: 16, 14
   offset: 0, 0
   index: -1

@@ -2,9 +2,11 @@ package game.util;
 
 import java.util.ArrayList;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.tann.hexcity.Main;
 import com.tann.hexcity.Main.MainState;
+import com.tann.hexcity.screens.menu.InputGrabber;
 
 public abstract class Screen extends Group{
 	//screenshake stuff//
@@ -13,6 +15,23 @@ public abstract class Screen extends Group{
 	private static float shakeDrag=.005f;
 	private ArrayList<Particle> particles = new ArrayList<Particle>();
 	private ArrayList<Particle> newParticles = new ArrayList<Particle>();
+	private ArrayList<Actor> actorStack = new ArrayList<>();
+	
+	public void pushActor(Actor a){
+		Group group = new Group();
+		group.addActor(new InputGrabber());
+		group.addActor(a);
+		actorStack.add(group);
+		addActor(group);
+	}
+	
+	public boolean popActor(){
+		if(actorStack.size()==0)return false;
+		Actor a = actorStack.remove(actorStack.size()-1);
+		a.remove();
+		return true;
+	}
+	
 	public Screen() {
 		setSize(Main.width, Main.height);
 	}

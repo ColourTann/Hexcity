@@ -56,11 +56,11 @@ public class Tile extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				if(type!=TileType.Empty) return false;
-				if(GameScreen.self.typePicked==null) return false;
-				if(!GameScreen.self.grid.lastTilePlaced.isAdjacentTo(Tile.this)) return false;
-				setType(GameScreen.self.typePicked.type);
+				if(GameScreen.get().typePicked==null) return false;
+				if(!GameScreen.get().grid.lastTilePlaced.isAdjacentTo(Tile.this)) return false;
+				setType(GameScreen.get().typePicked.type);
 				placementEffect();
-				GameScreen.self.tilePlaced(Tile.this);
+				GameScreen.get().tilePlaced(Tile.this);
 				return false;
 			}
 		});
@@ -120,7 +120,7 @@ public class Tile extends Actor{
 			}
 			break;
 		case Hut:
-			GameScreen.self.bonusHutTurn=!GameScreen.self.bonusHutTurn;
+			GameScreen.get().bonusHutTurn=!GameScreen.get().bonusHutTurn;
 			score(1);
 			break;
 		case Shrine:
@@ -181,7 +181,7 @@ public class Tile extends Actor{
 	};
 	static final float delay =.7f;
 	public void score(int points){
-		GameScreen.self.score.addPoints(points);
+		GameScreen.get().score.addPoints(points);
 		showScore=false;
 		clearActions();
 		lastScore=points;
@@ -196,7 +196,7 @@ public class Tile extends Actor{
 		ArrayList<Tile> tiles= new ArrayList<>();
 		for(int x=-dist;x<=dist;x++){
 			for(int y=-dist;y<=dist;y++){
-				Tile t = GameScreen.self.grid.getTile(this.x+x, this.y+y);
+				Tile t = GameScreen.get().grid.getTile(this.x+x, this.y+y);
 				if(!includeSelf && t==this) continue;
 				if(t!=null&&t.getDistance(this)<=dist){
 					tiles.add(t);
@@ -213,7 +213,7 @@ public class Tile extends Actor{
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		TextureRegion tr = type.region;
-		if(type==TileType.Empty && Tile.this.isAdjacentTo(GameScreen.self.grid.lastTilePlaced)) tr=availableTileRegion;
+		if(type==TileType.Empty && Tile.this.isAdjacentTo(GameScreen.get().grid.lastTilePlaced)) tr=availableTileRegion;
 		if(showScore) tr=scoreRegion;
 		batch.setColor(1,1,1,1);
 		Draw.draw(batch, tr, getX()-tileTapOffsetX, getY()-tileTapOffsetY);

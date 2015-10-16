@@ -7,18 +7,23 @@ import game.util.TextRenderer;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.tann.hexcity.Main.TransitionType;
 import com.tann.hexcity.screens.gameScreen.GameScreen;
 import com.tann.hexcity.screens.gameScreen.Tile.TileType;
+import com.tann.hexcity.screens.menu.MenuPanel;
 import com.tann.hexcity.screens.titleScreen.TitleScreen;
 
 
@@ -37,8 +42,6 @@ public class Main extends ApplicationAdapter {
 	public static float ticks;
 	public enum MainState{Normal, Paused}
 	Viewport port;
-
-
 
 	@Override
 	public void create () {
@@ -81,7 +84,30 @@ public class Main extends ApplicationAdapter {
 			TextRenderer.setImage(type.toString().toLowerCase(), type.region);
 		}
 		setScreen(TitleScreen.get());	
-		
+		Gdx.input.setCatchBackKey(true);
+		stage.addListener(new InputListener(){
+			public boolean keyDown (InputEvent event, int keycode) {
+
+				switch(keycode){
+				case Keys.ESCAPE:
+				case Keys.BACK:
+					boolean handled=currentScreen.popActor();
+					if(!handled){
+						if(Main.self.currentScreen instanceof TitleScreen){
+							Gdx.app.exit();
+						}
+						if(Main.self.currentScreen instanceof GameScreen){
+							Main.self.setScreen(TitleScreen.get(), TransitionType.RIGHT, Interpolation.pow2Out, Main.screenTransitionSpeed);
+						}
+					}
+					return false;
+				}
+
+				return true;
+			}
+
+
+		});
 	}
 
 	@Override
@@ -109,15 +135,22 @@ public class Main extends ApplicationAdapter {
 	public void setState(MainState state){
 		this.state=state;
 	}
-	public enum TransitionType{LEFT};
+	public enum TransitionType{LEFT, RIGHT};
 	public void setScreen(Screen screen, TransitionType type, Interpolation interp, float speed){
 		if(screen==currentScreen)return;
+		screen.clearActions();
+		if(previousScreen!=null)previousScreen.clearActions();
 		setScreen(screen);
 		switch(type){
 		case LEFT:
 			screen.setPosition(Main.width, 0);
 			screen.addAction(Actions.moveTo(0, 0, speed, interp));
 			previousScreen.addAction(Actions.moveTo(-Main.width, 0, speed, interp));
+			break;
+		case RIGHT:
+			screen.setPosition(-Main.width, 0);
+			screen.addAction(Actions.moveTo(0, 0, speed, interp));
+			previousScreen.addAction(Actions.moveTo(Main.width, 0, speed, interp));
 			break;
 		}
 		previousScreen.addAction(Actions.after(Actions.removeActor()));

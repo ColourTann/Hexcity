@@ -1,5 +1,6 @@
 package com.tann.hexcity.screens.menu;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -7,31 +8,30 @@ import com.tann.hexcity.Main;
 import com.tann.hexcity.Main.TransitionType;
 import com.tann.hexcity.screens.gameScreen.GameScreen;
 import com.tann.hexcity.screens.gameScreen.Tile.TileType;
+import com.tann.hexcity.screens.menu.rules.RulesBlock;
+import com.tann.hexcity.screens.menu.rules.TileHelp;
+import com.tann.hexcity.screens.menu.trophy.TrophyButton;
 import com.tann.hexcity.screens.titleScreen.TitleScreen;
 
 import game.util.Button;
 import game.util.Colours;
 import game.util.Draw;
-import game.util.TannFont;
 
 public class MenuPanel extends Group{
 	private static MenuPanel self;
 	static String[] rules = new String[]{"Score as many points as you can in the given turns [arrow]", "Each turn:[n]Choose a tile to place adjacent to the last tile [arrow]", "Tap a tile to learn more"};
-	
-	private static final int menuWidth=91,menuHeight=50;
-	static final int helpX=19;
-	static final int helpY=17;
+
+	public static final int menuWidth=91,menuHeight=50;
+	public static final int helpX=19, helpY=17;
 	private static final int rulesX=16,rulesY=38;
-	
 	private static final int trophyX=72,trophyY=4;
 	private static final int restartX=72,restartY=37,quitY=25;
-	
-	
+	static Group menuContainerGroup;
 	public static MenuPanel get(){
 		if(self==null)self = new MenuPanel();
 		return self;
 	}
-	
+
 	private MenuPanel() {
 		self=this;
 		setSize(menuWidth, menuHeight);
@@ -40,35 +40,35 @@ public class MenuPanel extends Group{
 		Button rulesButton = new Button("Rules", new Runnable() {
 			@Override
 			public void run() {
-				Main.self.currentScreen.addActor(new RulesBlock(rules));
+				Main.self.currentScreen.pushActor(new RulesBlock(rules));
 			}
 		});
 		rulesButton.setPosition(rulesX, rulesY);
 		addActor(rulesButton);
-		
+
 		TrophyButton achievementsButton = new TrophyButton();
 		achievementsButton.setPosition((int)(trophyX-achievementsButton.getWidth()/2), trophyY);
 		addActor(achievementsButton);
-		
+
 		Button quitButton = new Button("Quit", new Runnable() {
-			
+
 			@Override
 			public void run() {
-				hide();
+				Main.self.currentScreen.popActor();
 				if(Main.self.currentScreen==TitleScreen.get()){
 					return;
 				}
-				Main.self.setScreen(TitleScreen.get(), TransitionType.LEFT, Interpolation.pow2Out, Main.screenTransitionSpeed);
+				Main.self.setScreen(TitleScreen.get(), TransitionType.RIGHT, Interpolation.pow2Out, Main.screenTransitionSpeed);
 			}
 		});
 		quitButton.setPosition((int)(restartX-quitButton.getWidth()/2), quitY);
 		addActor(quitButton);
-		
+
 		Button restartButton = new Button("Restart", new Runnable() {
-			
+
 			@Override
 			public void run() {
-				hide();
+				Main.self.currentScreen.popActor();
 				if(Main.self.currentScreen instanceof GameScreen){
 					((GameScreen)Main.self.currentScreen).reset();
 				}
@@ -76,7 +76,7 @@ public class MenuPanel extends Group{
 		});
 		restartButton.setPosition((int)(restartX-restartButton.getWidth()/2), restartY);
 		addActor(restartButton);
-		
+
 		for(TileType type:TileType.values()){
 			if(type==TileType.Empty) continue;
 			TileHelp help = new TileHelp(type);
@@ -109,25 +109,24 @@ public class MenuPanel extends Group{
 		}
 	}
 
+	static boolean shown;
 	public static void show() {
-		Main.self.currentScreen.addActor(InputGrabber.get());
-		Main.self.currentScreen.addActor(MenuPanel.get());
+		shown=true;	
+		Main.self.currentScreen.pushActor(get());
 	}
+
 	
-	public static void hide() {
-		MenuPanel.get().remove();
-		InputGrabber.get().remove();
-	}
-	
+
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		batch.setColor(Colours.grass);
-//		System.out.println(getX()+":"+getY()+":"+getWidth()+":"+getHeight() );
 		Draw.fillRectangle(batch, getX(), getY(), getWidth(), getHeight());
 		batch.setColor(Colours.dark);
 		Draw.fillRectangle(batch, getX()+1, getY()+1, getWidth()-2, getHeight()-2);
-		
-		
+
+
 		super.draw(batch, parentAlpha);
 	}
+
+	
 }

@@ -35,30 +35,19 @@ public class GameScreen extends Screen{
 	PauseButton button = new PauseButton();
 	ArrayList<TilePicker> pickers = new ArrayList<TilePicker>();
 	TurnTracker tracker;
-	public static GameScreen self;
+	
 	GameType type;
-	public GameScreen(GameType type) {
-		self=this;
-		this.type=type;
-		int turns=0;
-		switch(type){
-		case Ten:
-			turns=10;
-			break;
-		case Fifteen:
-			turns=15;
-			break;
-		case Twenty:
-			turns=20;
-			break;
-		case Hammurabi:
-			turns=10;
-			break;	
-		default:
-			break;
-		
+	
+	private static GameScreen self;
+	public static GameScreen get(){
+		if(self==null){
+			self = new GameScreen();
 		}
-		tracker= new TurnTracker(turns);
+		return self;
+	}
+	
+	private GameScreen() {
+		tracker= new TurnTracker();
 		addActor(tracker);
 		tracker.setPosition(turnX, turnY);
 		addActor(grid);
@@ -77,6 +66,29 @@ public class GameScreen extends Screen{
 		}	
 	}
 
+	public void setup(GameType type){
+		reset();
+		this.type=type;
+		int turns=0;
+		switch(type){
+		case Ten:
+			turns=10;
+			break;
+		case Fifteen:
+			turns=15;
+			break;
+		case Twenty:
+			turns=20;
+			break;
+		case Hammurabi:
+			turns=10;
+			break;	
+		default:
+			break;
+		}
+		tracker.setTurns(turns);
+	}
+	
 	public void reset(){
 		bonusHutTurn=false;
 		grid.reset();

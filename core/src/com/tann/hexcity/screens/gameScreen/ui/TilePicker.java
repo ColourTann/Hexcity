@@ -24,7 +24,7 @@ public class TilePicker extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				if(finished)return false;
-				GameScreen.self.pickTile(TilePicker.this);
+				GameScreen.get().pickTile(TilePicker.this);
 				pick();
 				return false;
 			}
@@ -36,7 +36,7 @@ public class TilePicker extends Actor{
 		bonusHut=allHuts;
 		this.type=allHuts? TileType.Hut: Tile.getRandomTileType();
 		if(allHuts){
-			GameScreen.self.typePicked=this;	
+			GameScreen.get().typePicked=this;	
 		}
 	}
 	

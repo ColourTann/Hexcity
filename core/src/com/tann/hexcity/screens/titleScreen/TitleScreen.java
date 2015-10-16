@@ -55,7 +55,8 @@ public class TitleScreen extends Screen{
 	}
 	
 	public void startGame(GameType type){
-		Main.self.setScreen(new GameScreen(type), TransitionType.LEFT, Interpolation.pow2Out, Main.screenTransitionSpeed);
+		GameScreen.get().setup(type);
+		Main.self.setScreen(GameScreen.get(), TransitionType.LEFT, Interpolation.pow2Out, Main.screenTransitionSpeed);
 	}
 	
 	@Override

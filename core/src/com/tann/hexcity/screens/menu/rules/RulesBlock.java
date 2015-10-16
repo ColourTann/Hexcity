@@ -1,10 +1,11 @@
-package com.tann.hexcity.screens.menu;
+package com.tann.hexcity.screens.menu.rules;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.tann.hexcity.Main;
+import com.tann.hexcity.screens.menu.MenuPanel;
 
 import game.util.Colours;
 import game.util.Draw;
@@ -17,6 +18,8 @@ public class RulesBlock extends Actor{
 	int index=0;
 	int wrapWidth=83;
 	int rulesX, rulesY, rulesWidth, rulesHeight;
+	
+	
 	
 	public RulesBlock(String text) {
 		setup(new String[]{text}, wrapWidth);
@@ -41,7 +44,7 @@ public class RulesBlock extends Actor{
 	
 	public void next(){
 		if(index==text.length){
-			remove();
+			cancel();
 			return;
 		}
 		tr = new TextRenderer(text[index], wrapWidth);
@@ -51,6 +54,11 @@ public class RulesBlock extends Actor{
 		rulesY=Main.height/2-rulesHeight/2;
 		
 		index++;
+	}
+	
+	public void cancel(){
+		index=0;
+		Main.self.currentScreen.popActor();
 	}
 
 	

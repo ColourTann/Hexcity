@@ -13,14 +13,17 @@ public class TurnTracker extends Actor{
 	int blipYGap=4;
 	int turns=10;
 	int turnsTaken=0;
-	public TurnTracker(int turns) {
-		this.turns=turns;
+	public TurnTracker() {
 		setSize(blipXGap*5+blipSize, blipYGap*4+blipSize);
+	}
+	
+	public void setTurns(int turns){
+		reset();
+		this.turns=turns;
 	}
 	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		
 		int turnNumber=0;
 		for(int y=0;turnNumber<turns;y++){
 			for(int x=0;x<5;x++){
@@ -29,16 +32,13 @@ public class TurnTracker extends Actor{
 				turnNumber++;
 			}
 		}
-		
-		batch.setColor(Colours.grass);
-//		Draw.fillRectangle(batch, getX(), getY(), getWidth(), getHeight());
 		super.draw(batch, parentAlpha);
 	}
 
 	public void incrementTurns() {
 		turnsTaken ++;
 		if(turnsTaken==turns){
-			GameScreen.self.outOfTurns();
+			GameScreen.get().outOfTurns();
 		}
 	}
 
