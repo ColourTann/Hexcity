@@ -257,7 +257,6 @@ public class TextRenderer extends Actor{
 			this.x=x; this.y=y;
 		}
 		public void render(Batch batch, int bonusX, int bonusY){
-			
 			if(tr!=null) {
 				Color old = batch.getColor();
 				batch.setColor(Colours.white);

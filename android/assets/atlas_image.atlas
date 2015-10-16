@@ -104,7 +104,7 @@ ui/achievement
   index: -1
 ui/arrow
   rotate: false
-  xy: 98, 102
+  xy: 61, 69
   size: 7, 5
   orig: 7, 5
   offset: 0, 0
@@ -121,6 +121,13 @@ ui/cuneiform2
   xy: 23, 43
   size: 19, 64
   orig: 19, 64
+  offset: 0, 0
+  index: -1
+ui/hiddenachievement
+  rotate: false
+  xy: 98, 98
+  size: 9, 9
+  orig: 9, 9
   offset: 0, 0
   index: -1
 ui/lock

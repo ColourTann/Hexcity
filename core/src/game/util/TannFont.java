@@ -64,11 +64,12 @@ public class TannFont {
 		//need to take into account spaces
 		if(fixedWidth) return text.length()*getDefaultWidth();
 		int total=0;
-		for(char c:text.toCharArray()){
+		for(int i=0;i<text.length();i++){
+			char c = text.charAt(i);
 			total+=glyphs.get(c).getRegionWidth();
-			total+=1;
+			if(c==' ')total+=1;
+			if(i<text.length()-1)total+=1;
 		}
-		total-=1;
 		return total;
 	}
 	

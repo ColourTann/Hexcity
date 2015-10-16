@@ -8,6 +8,7 @@ import game.util.TextRenderer;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -42,7 +43,7 @@ public class Main extends ApplicationAdapter {
 	public static float ticks;
 	public enum MainState{Normal, Paused}
 	Viewport port;
-
+	public static Preferences prefs;
 	@Override
 	public void create () {
 		self=this;
@@ -63,7 +64,10 @@ public class Main extends ApplicationAdapter {
 		default:
 			break;
 		}
-
+		 prefs = Gdx.app.getPreferences("savedata");
+		prefs.putInteger("test", 1);
+		prefs.flush(); 
+		
 		//bunch of stuff for texturepacking //
 		FileHandle atlas_handle = Gdx.files.absolute("D:\\Code\\Eclipse\\Hexcity\\android\\assets\\atlas_image.atlas");
 		if(!atlas_handle.exists()){
@@ -80,6 +84,7 @@ public class Main extends ApplicationAdapter {
 		Gdx.input.setInputProcessor(stage);
 		//I implemented my own screen system so I have more control over it (yay transitions and screenshake)
 		TextRenderer.setImage("arrow", Main.atlas.findRegion("ui/arrow"));
+		TextRenderer.setImage("chiev", Main.atlas.findRegion("ui/achievement"));
 		for(TileType type:TileType.values()){
 			TextRenderer.setImage(type.toString().toLowerCase(), type.region);
 		}
