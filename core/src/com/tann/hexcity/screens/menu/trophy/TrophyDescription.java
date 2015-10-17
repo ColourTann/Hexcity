@@ -6,24 +6,25 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.tann.hexcity.Main;
+import com.tann.hexcity.savaData.Trophy;
 
 import game.util.Colours;
 import game.util.Draw;
 import game.util.TannFont;
 import game.util.TextRenderer;
 
-public class AchievementDescription extends Group{
-	Achievement a;
+public class TrophyDescription extends Group{
+	Trophy a;
 	TextRenderer tr;
 	
 	static final int gap=2;
-	public AchievementDescription(Achievement a) {
+	public TrophyDescription(Trophy a) {
 		this.a=a;
 	
 		
-		String text = " "+a.getName()+" ";
+		String text = (" "+a.getName()+" ").toUpperCase();
 		setWidth(a.getTexture().getRegionWidth()*2+TannFont.font.getWidth(text)+gap*2+2);
-		tr= new TextRenderer("[chiev]"+text+"[chiev][n]"+a.getDescription(), (int)(getWidth()-gap*2));
+		tr= new TextRenderer(a.getRendererIconName()+text+a.getRendererIconName()+"[n]"+a.getDescription().toUpperCase(), (int)(getWidth()-gap*2));
 		tr.setPosition(gap, gap);
 		setHeight(tr.getHeight()+gap*2);
 		addActor(tr);

@@ -79,4 +79,6 @@ public abstract class Screen extends Group{
 	public void drawParticles(Batch batch){
 		for(Particle p : particles) p.draw(batch);
 	}
+
+	public abstract void keyPressed(int keycode);
 }

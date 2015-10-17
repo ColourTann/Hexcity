@@ -7,8 +7,8 @@ import game.util.TextRenderer;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -21,10 +21,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.tann.hexcity.Main.TransitionType;
+import com.tann.hexcity.savaData.SaveData;
 import com.tann.hexcity.screens.gameScreen.GameScreen;
-import com.tann.hexcity.screens.gameScreen.Tile.TileType;
-import com.tann.hexcity.screens.menu.MenuPanel;
 import com.tann.hexcity.screens.titleScreen.TitleScreen;
 
 
@@ -43,7 +41,7 @@ public class Main extends ApplicationAdapter {
 	public static float ticks;
 	public enum MainState{Normal, Paused}
 	Viewport port;
-	public static Preferences prefs;
+	public static SaveData saveData;
 	@Override
 	public void create () {
 		self=this;
@@ -64,17 +62,16 @@ public class Main extends ApplicationAdapter {
 		default:
 			break;
 		}
-		 prefs = Gdx.app.getPreferences("savedata");
-		prefs.putInteger("test", 1);
-		prefs.flush(); 
-		
+		saveData = new SaveData();
+
+
 		//bunch of stuff for texturepacking //
 		FileHandle atlas_handle = Gdx.files.absolute("D:\\Code\\Eclipse\\Hexcity\\android\\assets\\atlas_image.atlas");
 		if(!atlas_handle.exists()){
 			atlas_handle=Gdx.files.internal("atlas_image.atlas");
 		}
 		atlas = new TextureAtlas(atlas_handle);
-		
+
 		//set up my viewport to be the base resolution//
 		port = new FitViewport(Main.width, Main.height);
 		//make a scene2d stage using the viewport//
@@ -83,16 +80,12 @@ public class Main extends ApplicationAdapter {
 		batch = (SpriteBatch) stage.getBatch();
 		Gdx.input.setInputProcessor(stage);
 		//I implemented my own screen system so I have more control over it (yay transitions and screenshake)
-		TextRenderer.setImage("arrow", Main.atlas.findRegion("ui/arrow"));
-		TextRenderer.setImage("chiev", Main.atlas.findRegion("ui/achievement"));
-		for(TileType type:TileType.values()){
-			TextRenderer.setImage(type.toString().toLowerCase(), type.region);
-		}
+		
 		setScreen(TitleScreen.get());	
 		Gdx.input.setCatchBackKey(true);
 		stage.addListener(new InputListener(){
 			public boolean keyDown (InputEvent event, int keycode) {
-
+				currentScreen.keyPressed(keycode);
 				switch(keycode){
 				case Keys.ESCAPE:
 				case Keys.BACK:
@@ -113,6 +106,7 @@ public class Main extends ApplicationAdapter {
 
 
 		});
+		TextRenderer.setupTextures();
 	}
 
 	@Override
@@ -173,7 +167,9 @@ public class Main extends ApplicationAdapter {
 		Gdx.gl.glClearColor(Colours.dark.r, Colours.dark.g, Colours.dark.b, 1);
 		Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 		//update everything
-		update(Gdx.graphics.getDeltaTime());
+		float mult = 1;
+		if(Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT))mult=.1f;
+		update(Gdx.graphics.getDeltaTime()*mult);
 		//draw the stage
 		stage.draw();
 	}

@@ -11,6 +11,7 @@ import com.tann.hexcity.screens.gameScreen.Tile.TileType;
 import com.tann.hexcity.screens.menu.rules.RulesBlock;
 import com.tann.hexcity.screens.menu.rules.TileHelp;
 import com.tann.hexcity.screens.menu.trophy.TrophyButton;
+import com.tann.hexcity.screens.menu.trophy.TrophyPanel;
 import com.tann.hexcity.screens.titleScreen.TitleScreen;
 
 import game.util.Button;
@@ -21,11 +22,11 @@ public class MenuPanel extends Group{
 	private static MenuPanel self;
 	static String[] rules = new String[]{"Score as many points as you can in the given turns [arrow]", "Each turn:[n]Choose a tile to place adjacent to the last tile [arrow]", "Tap a tile to learn more"};
 
-	public static final int menuWidth=91,menuHeight=50;
-	public static final int helpX=19, helpY=17;
-	private static final int rulesX=16,rulesY=38;
-	private static final int trophyX=72,trophyY=4;
-	private static final int restartX=72,restartY=37,quitY=25;
+	public static final int menuWidth=88,menuHeight=49;
+	public static final int helpX=19, helpY=16;
+	private static final int rulesX=14,rulesY=37;
+	private static final int trophyX=70,trophyY=4;
+	private static final int restartX=70,restartY=37,quitY=25;
 	static Group menuContainerGroup;
 	public static MenuPanel get(){
 		if(self==null)self = new MenuPanel();
@@ -37,7 +38,7 @@ public class MenuPanel extends Group{
 		setSize(menuWidth, menuHeight);
 
 		setPosition((int)(Main.width/2-(int)getWidth()/2), (int)(Main.height/2f-getHeight()/2f));
-		Button rulesButton = new Button("Rules", new Runnable() {
+		Button rulesButton = new Button("RULES", new Runnable() {
 			@Override
 			public void run() {
 				Main.self.currentScreen.pushActor(new RulesBlock(rules));
@@ -50,12 +51,13 @@ public class MenuPanel extends Group{
 		achievementsButton.setPosition((int)(trophyX-achievementsButton.getWidth()/2), trophyY);
 		addActor(achievementsButton);
 
-		Button quitButton = new Button("Quit", new Runnable() {
+		Button quitButton = new Button("EXIT", new Runnable() {
 
 			@Override
 			public void run() {
 				Main.self.currentScreen.popActor();
 				if(Main.self.currentScreen==TitleScreen.get()){
+					Gdx.app.exit();
 					return;
 				}
 				Main.self.setScreen(TitleScreen.get(), TransitionType.RIGHT, Interpolation.pow2Out, Main.screenTransitionSpeed);
@@ -64,13 +66,13 @@ public class MenuPanel extends Group{
 		quitButton.setPosition((int)(restartX-quitButton.getWidth()/2), quitY);
 		addActor(quitButton);
 
-		Button restartButton = new Button("Restart", new Runnable() {
+		Button restartButton = new Button("RESTART", new Runnable() {
 
 			@Override
 			public void run() {
 				Main.self.currentScreen.popActor();
 				if(Main.self.currentScreen instanceof GameScreen){
-					((GameScreen)Main.self.currentScreen).reset();
+					((GameScreen)Main.self.currentScreen).restart();
 				}
 			}
 		});
@@ -115,16 +117,12 @@ public class MenuPanel extends Group{
 		Main.self.currentScreen.pushActor(get());
 	}
 
-	
-
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		batch.setColor(Colours.grass);
 		Draw.fillRectangle(batch, getX(), getY(), getWidth(), getHeight());
 		batch.setColor(Colours.dark);
 		Draw.fillRectangle(batch, getX()+1, getY()+1, getWidth()-2, getHeight()-2);
-
-
 		super.draw(batch, parentAlpha);
 	}
 

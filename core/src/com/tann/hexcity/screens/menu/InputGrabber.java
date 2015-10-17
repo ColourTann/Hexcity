@@ -17,6 +17,7 @@ public class InputGrabber extends Group{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.popActor();
+				event.stop();
 				return false;
 			}
 		});

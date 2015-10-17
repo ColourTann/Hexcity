@@ -4,11 +4,15 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.tann.hexcity.savaData.Trophy;
+import com.tann.hexcity.savaData.Trophy.AchievementType;
 import com.tann.hexcity.screens.gameScreen.Tile.TileType;
 
 public class Grid extends Group{
 	//two lists of tiles, one for getting locations, one for iterating through all tiles
 	private static final int startingTrees=14;
+	private int treesRemoved;
+	private int gardensScored;
 	Tile[][] tiles = new Tile[9][11];
 	ArrayList<Tile> allTiles = new ArrayList<>();
 	public Tile lastTilePlaced;
@@ -56,6 +60,18 @@ public class Grid extends Group{
 			t.setType(TileType.Forest);
 			i++;
 		}
+		treesRemoved=0;
+		gardensScored=0;
+	}
+	
+	public void removeTree(){
+		treesRemoved++;
+		Trophy.checkTrophies(AchievementType.CutDownTreesInFifteen, treesRemoved);
+	}
+	
+	public void scoreGarden(int amount){
+		gardensScored+=amount;
+		Trophy.checkTrophies(AchievementType.MakeGardenSetsInTen, gardensScored);
 	}
 
 }

@@ -102,9 +102,135 @@ ui/achievement
   orig: 9, 9
   offset: 0, 0
   index: -1
+ui/achievements/scorepointswithasingletileintwenty
+  rotate: false
+  xy: 113, 117
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/cutdowntreesinfifteen
+  rotate: false
+  xy: 98, 98
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/hidden
+  rotate: false
+  xy: 61, 65
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/hiddenachievement
+  rotate: false
+  xy: 61, 65
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/makegardensetsinten
+  rotate: false
+  xy: 79, 76
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/playcampaigns
+  rotate: false
+  xy: 97, 87
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scorecampaign0
+  rotate: false
+  xy: 44, 43
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scorecampaign1
+  rotate: false
+  xy: 38, 32
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scorecampaign2
+  rotate: false
+  xy: 61, 54
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scorefifteen0
+  rotate: false
+  xy: 72, 65
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scorefifteen1
+  rotate: false
+  xy: 90, 76
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scorefifteen2
+  rotate: false
+  xy: 55, 43
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scoreten0
+  rotate: false
+  xy: 38, 21
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scoreten1
+  rotate: false
+  xy: 49, 32
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scoreten2
+  rotate: false
+  xy: 72, 54
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scoretwenty0
+  rotate: false
+  xy: 83, 65
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scoretwenty1
+  rotate: false
+  xy: 66, 43
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/achievements/scoretwenty2
+  rotate: false
+  xy: 38, 10
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
 ui/arrow
   rotate: false
-  xy: 61, 69
+  xy: 113, 110
   size: 7, 5
   orig: 7, 5
   offset: 0, 0
@@ -121,13 +247,6 @@ ui/cuneiform2
   xy: 23, 43
   size: 19, 64
   orig: 19, 64
-  offset: 0, 0
-  index: -1
-ui/hiddenachievement
-  rotate: false
-  xy: 98, 98
-  size: 9, 9
-  orig: 9, 9
   offset: 0, 0
   index: -1
 ui/lock

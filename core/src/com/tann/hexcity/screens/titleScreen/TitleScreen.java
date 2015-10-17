@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.tann.hexcity.Main;
 import com.tann.hexcity.Main.TransitionType;
 import com.tann.hexcity.screens.gameScreen.GameScreen;
@@ -22,9 +25,9 @@ public class TitleScreen extends Screen{
 	static final int titleOffsetX=27;
 	static final int titleOffsetY=48;
 	
-	static final int buttonX=26;
+	static final int buttonX=25;
 	static final int buttonY=28;
-	static final int buttonXGap=40;
+	static final int buttonXGap=41;
 	static final int buttonYGap=12;
 	
 	static TextureRegion[] cuneiform = new TextureRegion[]{Main.atlas.findRegion("ui/cuneiform1"),Main.atlas.findRegion("ui/cuneiform2")};
@@ -50,8 +53,21 @@ public class TitleScreen extends Screen{
 			b.setPosition(buttonX+buttonXGap*(i%2), buttonY-buttonYGap*(i/2));
 		}
 		PauseButton mButt = new PauseButton();
-		mButt.setPosition(getWidth()/2-mButt.getWidth()/2, 5);
+		System.out.println(Main.width+":"+mButt.getWidth()+":"+(int)(Main.width/2f-mButt.getWidth()/2f));
+		mButt.setPosition((int)Math.ceil((Main.width/2f-mButt.getWidth()/2f)), 4);
 		addActor(mButt);	
+		
+		Actor a = new Actor();
+		a.setSize(10, 10);
+		a.addListener(new InputListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				Main.saveData.reset();
+				return false;
+			}
+		});
+		addActor(a);
+		
 	}
 	
 	public void startGame(GameType type){
@@ -103,6 +119,10 @@ public class TitleScreen extends Screen{
 
 	@Override
 	public void postTick(float delta) {
+	}
+
+	@Override
+	public void keyPressed(int keycode) {
 	}
 
 }

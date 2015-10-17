@@ -18,7 +18,7 @@ public class TileHelp extends Actor{
 		setSize(type.region.getRegionWidth()-2, type.region.getRegionHeight()-2);
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				Main.self.currentScreen.pushActor(new RulesBlock("["+type.toString().toLowerCase()+"] "+type.toString()+" ["+type.toString().toLowerCase()+"]"+"[n]"+type.rulesText));
+				Main.self.currentScreen.pushActor(new RulesBlock("["+type.toString().toLowerCase()+"] "+type.toString().toUpperCase()+" ["+type.toString().toLowerCase()+"]"+"[n]"+type.rulesText.toUpperCase()));
 				return false;
 			}
 			

@@ -16,7 +16,7 @@ public class RulesBlock extends Actor{
 	int gap=2;
 	String[] text;
 	int index=0;
-	int wrapWidth=83;
+	int wrapWidth=78;
 	int rulesX, rulesY, rulesWidth, rulesHeight;
 	
 	

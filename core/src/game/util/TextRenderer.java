@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.tann.hexcity.Main;
+import com.tann.hexcity.screens.gameScreen.Tile.TileType;
 
 
 public class TextRenderer extends Actor{
@@ -96,7 +97,7 @@ public class TextRenderer extends Actor{
 				if(specialMode){
 					boolean specialNewLine=false;
 					int specialLineHeight=0;
-					if(word.equals("n")){
+					if(word.equalsIgnoreCase("n")){
 						specialNewLine=true;
 						specialLineHeight=lineHeight;
 					}
@@ -136,6 +137,9 @@ public class TextRenderer extends Actor{
 					if(!space){
 						//find texture
 						tr = textureMap.get(word);
+						if(tr==null){
+							System.out.println("couldn't find image id: "+word);
+						}
 						length = tr.getRegionWidth();
 					}
 				}
@@ -211,6 +215,12 @@ public class TextRenderer extends Actor{
 	private static HashMap<String, TextureRegion> textureMap = new HashMap<String, TextureRegion>();
 
 	public static void setupTextures(){
+		TextRenderer.setImage("arrow", Main.atlas.findRegion("ui/arrow"));
+		TextRenderer.setImage("chiev", Main.atlas.findRegion("ui/achievement"));
+		TextRenderer.setImage("hiddenachievement", Main.atlas.findRegion("ui/achievements/hidden"));
+		for(TileType type:TileType.values()){
+			TextRenderer.setImage(type.toString().toLowerCase(), type.region);
+		}
 		
 	}
 

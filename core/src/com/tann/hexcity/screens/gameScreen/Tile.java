@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.tann.hexcity.Main;
+import com.tann.hexcity.savaData.Trophy;
+import com.tann.hexcity.savaData.Trophy.AchievementType;
 
 import game.util.Colours;
 import game.util.Draw;
@@ -27,6 +29,7 @@ public class Tile extends Actor{
 	boolean gardenBonusScored;
 	boolean showScore;
 	int lastScore;
+	static int totalScoreThisPlacement;
 	public enum TileType{
 		//java enums are way cool
 		Hut(Main.atlas.findRegion("tile/hut"), "+1 point[n]Place another free hut."), 
@@ -83,6 +86,7 @@ public class Tile extends Actor{
 			for(Tile t:getAdjacentTiles(1, false)){
 				if(t.type==TileType.Forest){
 					t.setType(TileType.Empty);
+					GameScreen.get().grid.removeTree();
 					counter++;
 				}
 			}
@@ -106,12 +110,14 @@ public class Tile extends Actor{
 					if(!t.gardenBonusScored){
 						t.gardenBonusScored=true;
 						t.score(t==this?4:2);
+						GameScreen.get().grid.scoreGarden(1);
 					}
 				}
 				else{
 					if(t.gardenBonusScored){
 						t.gardenBonusScored=false;
 						t.score(t==this?0:-2);
+						GameScreen.get().grid.scoreGarden(-1);
 					}
 					else{
 						if(t==this)t.score(2);
@@ -120,7 +126,7 @@ public class Tile extends Actor{
 			}
 			break;
 		case Hut:
-			GameScreen.get().bonusHutTurn=!GameScreen.get().bonusHutTurn;
+			GameScreen.get().tracker.flipBonusHutTurn();
 			score(1);
 			break;
 		case Shrine:
@@ -150,6 +156,8 @@ public class Tile extends Actor{
 			break;
 		}
 		checkSurroundingTiles();
+		Trophy.checkTrophies(AchievementType.ScorePointsWithASingleTileInTwenty, totalScoreThisPlacement);
+		totalScoreThisPlacement=0;
 	}
 
 	public void checkSurroundingTiles(){
@@ -190,6 +198,7 @@ public class Tile extends Actor{
 		scoreFlash.addAction(Actions.delay(delay));
 		scoreFlash.addAction(Actions.run(invertShowScore));
 		addAction(scoreFlash);
+		totalScoreThisPlacement+=points;
 	}
 
 	public ArrayList<Tile> getAdjacentTiles(int dist, boolean includeSelf){
@@ -262,6 +271,13 @@ public class Tile extends Actor{
 
 	public String toString(){
 		return type+" at "+x+":"+y;
+	}
+
+	public boolean hasFreeSpaces() {
+		for(Tile t:getAdjacentTiles(1, false)){
+			if(t.type==TileType.Empty) return true;
+		}
+		return false;
 	}
 }
 

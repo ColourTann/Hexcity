@@ -11,8 +11,9 @@ public class TurnTracker extends Actor{
 	int blipSize=3;
 	int blipXGap=4;
 	int blipYGap=4;
-	int turns=10;
+	public int turns=10;
 	int turnsTaken=0;
+	public boolean bonusHutTurn;
 	public TurnTracker() {
 		setSize(blipXGap*5+blipSize, blipYGap*4+blipSize);
 	}
@@ -36,13 +37,25 @@ public class TurnTracker extends Actor{
 	}
 
 	public void incrementTurns() {
+		if(bonusHutTurn){
+			return;
+		}
 		turnsTaken ++;
 		if(turnsTaken==turns){
-			GameScreen.get().outOfTurns();
+			GameScreen.get().gameEnd();
 		}
 	}
 
 	public void reset() {
 		turnsTaken=0;
+		bonusHutTurn=false;
+	}
+
+	public void flipBonusHutTurn() {
+		bonusHutTurn=!bonusHutTurn;
+	}
+
+	public void addTurns(int turns) {
+		this.turns+=turns;
 	}
 }
