@@ -26,7 +26,7 @@ import game.util.TannFont;
 
 public class GameScreen extends Screen{
 	public enum GameType{
-		Ten("10 turns"), Fifteen("15 turns"), Twenty("20 turns"), Hammurabi("campaign");	
+		Ten("short"), Fifteen("medium"), Twenty("long"), Hammurabi("campaign");	
 		public String description;
 		GameType(String description){
 			this.description=description;
@@ -42,10 +42,10 @@ public class GameScreen extends Screen{
 
 	public TilePicker typePicked;
 	Grid grid = new Grid();
-	ScoreKeeper score = new ScoreKeeper();
-	PauseButton button = new PauseButton();
+	ScoreKeeper scoreKeeper = new ScoreKeeper();
+	PauseButton pauseButton = new PauseButton();
 	ArrayList<TilePicker> pickers = new ArrayList<TilePicker>();
-	public TurnTracker tracker;
+	public TurnTracker turnTracker;
 	public boolean hammurabiMode;
 	public GameType gameType;
 
@@ -58,15 +58,15 @@ public class GameScreen extends Screen{
 	}
 
 	private GameScreen() {
-		tracker= new TurnTracker();
-		addActor(tracker);
-		tracker.setPosition(turnX, turnY);
+		turnTracker= new TurnTracker();
+		addActor(turnTracker);
+		turnTracker.setPosition(turnX, turnY);
 		addActor(grid);
 		grid.setPosition(gridX, gridY);
-		addActor(score);
-		score.setPosition(scoreX, scoreY);
-		addActor(button);
-		button.setPosition(menuX, menuY);
+		addActor(scoreKeeper);
+		scoreKeeper.setPosition(scoreX, scoreY);
+		addActor(pauseButton);
+		pauseButton.setPosition(menuX, menuY);
 		for(int i=0;i<3;i++){
 			pickers.add(new TilePicker());
 		}
@@ -79,16 +79,16 @@ public class GameScreen extends Screen{
 		addListener(new InputListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				if(!score.finishedFlag)return false;
+				if(!scoreKeeper.finishedFlag)return false;
 				if(hammurabiMode){
-					switch(tracker.turns){
+					switch(turnTracker.turns){
 					case 10:
-						tracker.setTurns(15);
+						turnTracker.setTurns(15);
 						gameType=GameType.Fifteen;
 						reset(false);
 						break;
 					case 15:
-						tracker.setTurns(20);
+						turnTracker.setTurns(20);
 						gameType=GameType.Twenty;
 						reset(false);
 						break;
@@ -128,13 +128,13 @@ public class GameScreen extends Screen{
 		default:
 			break;
 		}
-		tracker.setTurns(turns);
+		turnTracker.setTurns(turns);
 	}
 
 	public void reset(boolean full){
 		grid.reset();
-		score.reset(full);
-		tracker.reset();
+		scoreKeeper.reset(full);
+		turnTracker.reset();
 		for(TilePicker p:pickers)p.reset();
 	}
 
@@ -164,14 +164,14 @@ public class GameScreen extends Screen{
 	public void tilePlaced(Tile t) {
 		typePicked.unpick();
 		typePicked=null;
-		for(TilePicker p:pickers){p.randomiseType(tracker.bonusHutTurn);}
+		for(TilePicker p:pickers){p.randomiseType(turnTracker.bonusHutTurn);}
 		grid.lastTilePlaced=t;
-		tracker.incrementTurns();
+		turnTracker.incrementTurns();
 		if(!t.hasFreeSpaces())gameEnd();
 	}
 
 	public void gameEnd() {
-		score.finished();
+		scoreKeeper.finished();
 		for(TilePicker p:pickers){
 			p.finished();
 		}

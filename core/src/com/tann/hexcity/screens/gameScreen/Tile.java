@@ -126,7 +126,7 @@ public class Tile extends Actor{
 			}
 			break;
 		case Hut:
-			GameScreen.get().tracker.flipBonusHutTurn();
+			GameScreen.get().turnTracker.flipBonusHutTurn();
 			score(1);
 			break;
 		case Shrine:
@@ -189,7 +189,7 @@ public class Tile extends Actor{
 	};
 	static final float delay =.7f;
 	public void score(int points){
-		GameScreen.get().score.addPoints(points);
+		GameScreen.get().scoreKeeper.addPoints(points);
 		showScore=false;
 		clearActions();
 		lastScore=points;

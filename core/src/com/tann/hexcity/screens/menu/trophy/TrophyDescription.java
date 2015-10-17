@@ -20,8 +20,18 @@ public class TrophyDescription extends Group{
 	static final int gap=2;
 	public TrophyDescription(Trophy a) {
 		this.a=a;
+		refresh();
+		addListener(new InputListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				Main.self.currentScreen.popActor();
+				event.stop();
+				return false;
+			}
+		});
+	}
 	
-		
+	public void refresh(){
 		String text = (" "+a.getName()+" ").toUpperCase();
 		setWidth(a.getTexture().getRegionWidth()*2+TannFont.font.getWidth(text)+gap*2+2);
 		tr= new TextRenderer(a.getRendererIconName()+text+a.getRendererIconName()+"[n]"+a.getDescription().toUpperCase(), (int)(getWidth()-gap*2));
@@ -29,13 +39,6 @@ public class TrophyDescription extends Group{
 		setHeight(tr.getHeight()+gap*2);
 		addActor(tr);
 		setPosition((int)(Main.width/2-getWidth()/2), (int)(Main.height/2-getHeight()/2));
-		addListener(new InputListener(){
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Main.self.currentScreen.popActor();
-				return false;
-			}
-		});
 	}
 	
 	@Override

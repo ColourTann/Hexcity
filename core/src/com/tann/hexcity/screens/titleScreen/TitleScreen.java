@@ -57,11 +57,20 @@ public class TitleScreen extends Screen{
 		mButt.setPosition((int)Math.ceil((Main.width/2f-mButt.getWidth()/2f)), 4);
 		addActor(mButt);	
 		
-		Actor a = new Actor();
+		Actor a = new Actor(){
+			@Override
+			public void draw(Batch batch, float parentAlpha) {
+				batch.setColor(Colours.straw);
+				Draw.fillRectangle(batch, getX(), getY(), getWidth(), getHeight());
+				super.draw(batch, parentAlpha);
+			}
+		};
 		a.setSize(10, 10);
+		a.setPosition(0,0);
 		a.addListener(new InputListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				System.out.println("touched weird butt");
 				Main.saveData.reset();
 				return false;
 			}

@@ -12,6 +12,7 @@ public class SaveData {
 	
 	public void reset(){
 		data.clear();
+		data.flush();
 	}
 	
 	public boolean isComplete(Trophy t ){
@@ -21,5 +22,15 @@ public class SaveData {
 	public void achieve(Trophy t){
 		data.putBoolean(t.getShortName(), true);
 		data.flush();
+	}
+
+	public void increment(String string, int i) {
+		int count = data.getInteger(string, 0);
+		count += i;
+		data.putInteger(string, count);
+	}
+	
+	public int getCount(String key){
+		return data.getInteger(key, 0);
 	}
 }

@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.tann.hexcity.Main;
 import com.tann.hexcity.Main.TransitionType;
 import com.tann.hexcity.screens.gameScreen.GameScreen;
@@ -109,6 +111,13 @@ public class MenuPanel extends Group{
 				break;
 			}
 		}
+		addListener(new InputListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				event.stop();
+				return false;
+			}
+		});
 	}
 
 	static boolean shown;

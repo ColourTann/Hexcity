@@ -19,6 +19,7 @@ public class TrophyButton extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.pushActor(TrophyPanel.get());
+				event.stop();
 				return false;
 			}
 

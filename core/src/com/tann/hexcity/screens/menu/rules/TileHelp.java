@@ -19,6 +19,7 @@ public class TileHelp extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.pushActor(new RulesBlock("["+type.toString().toLowerCase()+"] "+type.toString().toUpperCase()+" ["+type.toString().toLowerCase()+"]"+"[n]"+type.rulesText.toUpperCase()));
+				event.stop();
 				return false;
 			}
 			

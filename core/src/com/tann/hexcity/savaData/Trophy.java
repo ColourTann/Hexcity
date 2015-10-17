@@ -32,16 +32,19 @@ public class Trophy {
 	boolean hidden;
 	GameType requiredType;
 	public enum AchievementType{ScoreTen, ScoreFifteen, ScoreTwenty, ScoreCampaign, 
-		Hidden,
 		MakeGardenSetsInTen, CutDownTreesInFifteen, ScorePointsWithASingleTileInTwenty, PlayCampaigns}
 	
 	public Trophy(int x, int y, AchievementType type, int target) {
-		setup(x, y, type, target);
+		setup(x, y, type, target, false);
 	}
 
+	public Trophy(int x, int y, AchievementType type, int target, boolean hidden){
+		setup(x, y, type, target, hidden);
+	}
 
 	TextureRegion region;
-	public void setup(int x, int y, AchievementType type, int target){
+	public void setup(int x, int y, AchievementType type, int target, boolean hidden){
+		this.hidden=hidden;
 		this.index=-1;
 		this.x=x; this.y=y;
 		this.type=type;
@@ -57,7 +60,7 @@ public class Trophy {
 			switch(index){
 			case 0: this.target=35; break;
 			case 1: this.target=40; break;
-			case 2: this.target=44; break;
+			case 2: this.target=43; break;
 			}
 			break;
 		case ScoreFifteen:
@@ -75,11 +78,10 @@ public class Trophy {
 			switch(index){
 			case 0: this.target=55; break;
 			case 1: this.target=80; break;
-			case 2: this.target=30; break;
+			case 2: this.target=84; break;
 			}
 			break;
 		case ScoreCampaign:
-			requiredType=GameType.Hammurabi;
 			this.index=target;
 			switch(index){
 			case 0: this.target=150; break;
@@ -102,14 +104,8 @@ public class Trophy {
 		TextRenderer.setImage(getShortName(), region);
 	}
 
-	
-	
-	public boolean isHidden(){
-		return hidden;
-	}
-
 	public String getRendererIconName(){
-		return hidden?"[hiddenachievement]":"["+getShortName()+"]";
+		return isHidden()?"[hiddenachievement]":"["+getShortName()+"]";
 	}
 
 	public String getShortName(){
@@ -117,64 +113,82 @@ public class Trophy {
 	}
 
 	public String getName(){
-		String suffix = index==0?"Expert":"Master";
-		if(hidden) return "Hidden";
+		
+		
+		if(isHidden()) return "????????????";
 		switch(type){
 		case CutDownTreesInFifteen:
 			return "Deforestation";
-		case Hidden:
-			return "Hidden";
 		case MakeGardenSetsInTen:
 			return "Green thumbs";
 		case PlayCampaigns:
 			return "Hammurabi";
 		case ScoreCampaign:
-			return "Campaign "+suffix;
+			switch(index){
+			case 0: return "campaign expert";
+			case 1: return "campaign master";
+			case 2: return "developer highscore";
+			}
 		case ScoreFifteen:
-			return "Fifteen "+suffix;
+			switch(index){
+			case 0: return "medium expert";
+			case 1: return "medium master";
+			case 2: return "developer highscore";
+			}
 		case ScorePointsWithASingleTileInTwenty:
 			return "Big Points";
 		case ScoreTen:
-			return "Ten "+suffix;
+			switch(index){
+			case 0: return "short expert";
+			case 1: return "short master";
+			case 2: return "developer highscore";
+			}
 		case ScoreTwenty:
-			return "Twenty "+suffix;
+			switch(index){
+			case 0: return "long expert";
+			case 1: return "long master";
+			case 2: return "developer highscore";
+			}
 		default:
 			break;
 		}
-		return hidden?"Hidden":"unset achievement name";
+		return "unset achievement name";
 	}
 
 	public String getDescription(){
-		if(hidden) return "Hidden secret achievement";
+		if(isHidden()) return "????????????";
 		switch(type){
 		case CutDownTreesInFifteen:
-			return "Cut down "+target+" trees in a single 15-turn game";
-		case Hidden:
-			return "Hidden secret achievement";
+			return "Cut down "+target+" trees in a single medium game";
 		case MakeGardenSetsInTen:
-			return "Make "+target/3+" garden sets in a single 10-turn game";
+			return "Make "+target/3+" garden sets in a single short game";
 		case PlayCampaigns:
 			return "Finish "+target+" campaigns";
 		case ScoreCampaign:
 			return "Score "+target+" points in campaign mode";
 		case ScoreFifteen:
-			return "Score "+target+" points in 15-turn mode";
+			return "Score "+target+" points in medium mode";
 		case ScorePointsWithASingleTileInTwenty:
-			return "Score "+target+" points by placing a single tile in a 20-turn game";
+			return "Score "+target+" points by placing a single tile in a long game";
 		case ScoreTen:
-			return "Score "+target+" points in 10-turn mode";
+			return "Score "+target+" points in short mode";
 		case ScoreTwenty:
-			return "Score "+target+" points in 20-turn mode";
+			return "Score "+target+" points in long mode";
 		default:
 			break;
 		}
-		return hidden?"Hidden secret achievement!":"unset description text";
+		return "unset description text";
 	}
 
 	public TextureRegion getTexture(){
-		return hidden?hiddenImage:region;
+		return isHidden()?hiddenImage:region;
 	}
 
+	public boolean isHidden(){
+		if(hidden) return !Main.saveData.isComplete(this);
+		return false;
+	}
+	
 	public static ArrayList<Trophy> achievementsList = new ArrayList<>();
 	static {
 		//		width = 6;
@@ -189,11 +203,20 @@ public class Trophy {
 		achievementsList.add(new Trophy(1, 0, AchievementType.CutDownTreesInFifteen, 9));
 		achievementsList.add(new Trophy(2, 0, AchievementType.ScorePointsWithASingleTileInTwenty, 18));
 		achievementsList.add(new Trophy(3, 0, AchievementType.PlayCampaigns, 20));
-		for(int x=4;x<7;x++){
-			for(int y=0;y<3;y++){
-				achievementsList.add(new Trophy(x, y, AchievementType.Hidden, 0));
-			}
-		}
+		
+		
+		//456 012 hidden achievements
+		achievementsList.add(new Trophy(4, 2, AchievementType.ScoreTen, 2, true));
+		achievementsList.add(new Trophy(4, 1, AchievementType.ScoreFifteen, 2, true));
+		achievementsList.add(new Trophy(5, 1, AchievementType.ScoreTwenty, 2, true));
+		achievementsList.add(new Trophy(5, 2, AchievementType.ScoreCampaign, 2, true));
+		
+//		for(int x=4;x<7;x++){
+//			for(int y=0;y<3;y++){
+//				achievementsList.add(new Trophy(x, y, AchievementType.Hidden, 0));
+//			}
+//		}
+		
 	}
 	
 	public static void checkTrophies(AchievementType action){
@@ -201,6 +224,7 @@ public class Trophy {
 	}
 
 	public static void checkTrophies(AchievementType action, int arg){
+		System.out.println("checking "+action+" "+arg);
 		for(Trophy t: achievementsList){
 			if(t.requiredType!=null && t.requiredType!=GameScreen.get().gameType) continue;
 			if(t.type!=action) continue;			
@@ -213,6 +237,11 @@ public class Trophy {
 		if(Main.saveData.isComplete(this))return;
 		Main.saveData.achieve(this);
 		GameScreen.get().showAchievement(this);
+		getDesciptionPanel().refresh();
 	}
 
+	private TrophyDescription description;
+	public TrophyDescription getDesciptionPanel(){
+		if(description==null)description= new TrophyDescription(this);
+		return description;	}
 }

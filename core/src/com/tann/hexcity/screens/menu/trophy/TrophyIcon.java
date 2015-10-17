@@ -22,7 +22,7 @@ public class TrophyIcon extends Actor{
 		setSize(a.getTexture().getRegionWidth()+4, a.getTexture().getRegionHeight()+4);
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				Main.self.currentScreen.pushActor(new TrophyDescription(a));
+				Main.self.currentScreen.pushActor(a.getDesciptionPanel());
 				event.stop();
 				return false;
 			}
