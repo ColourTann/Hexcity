@@ -1,4 +1,4 @@
-package com.tann.hexcity.screens.menu.trophy;
+package com.tann.hexcity.screens.menu;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.tann.hexcity.Main;
+import com.tann.hexcity.screens.menu.trophy.TrophyPanel;
 
 import game.util.Colours;
 import game.util.Draw;

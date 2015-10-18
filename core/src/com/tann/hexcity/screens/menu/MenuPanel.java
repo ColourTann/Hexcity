@@ -12,7 +12,6 @@ import com.tann.hexcity.screens.gameScreen.GameScreen;
 import com.tann.hexcity.screens.gameScreen.Tile.TileType;
 import com.tann.hexcity.screens.menu.rules.RulesBlock;
 import com.tann.hexcity.screens.menu.rules.TileHelp;
-import com.tann.hexcity.screens.menu.trophy.TrophyButton;
 import com.tann.hexcity.screens.menu.trophy.TrophyPanel;
 import com.tann.hexcity.screens.titleScreen.TitleScreen;
 
@@ -27,8 +26,8 @@ public class MenuPanel extends Group{
 	public static final int menuWidth=88,menuHeight=49;
 	public static final int helpX=19, helpY=16;
 	private static final int rulesX=14,rulesY=37;
-	private static final int trophyX=70,trophyY=4;
-	private static final int restartX=70,restartY=37,quitY=25;
+	private static final int trophyX=58,scoreX=77,trophyY=30;
+	private static final int restartX=68,restartY=4,quitY=16;
 	static Group menuContainerGroup;
 	public static MenuPanel get(){
 		if(self==null)self = new MenuPanel();
@@ -52,6 +51,10 @@ public class MenuPanel extends Group{
 		TrophyButton achievementsButton = new TrophyButton();
 		achievementsButton.setPosition((int)(trophyX-achievementsButton.getWidth()/2), trophyY);
 		addActor(achievementsButton);
+		
+		ScoreButton scoreButton = new ScoreButton();
+		scoreButton.setPosition((int)(scoreX-scoreButton.getWidth()/2), trophyY);
+		addActor(scoreButton);
 
 		Button quitButton = new Button("EXIT", new Runnable() {
 

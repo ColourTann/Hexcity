@@ -60,7 +60,7 @@ public class TitleScreen extends Screen{
 		Actor a = new Actor(){
 			@Override
 			public void draw(Batch batch, float parentAlpha) {
-				batch.setColor(Colours.straw);
+				batch.setColor(Colours.withAlpha(Colours.straw, .05f));
 				Draw.fillRectangle(batch, getX(), getY(), getWidth(), getHeight());
 				super.draw(batch, parentAlpha);
 			}

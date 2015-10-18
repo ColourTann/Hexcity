@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Align;
 import com.tann.hexcity.Main;
 
 public class TannFont {
@@ -56,6 +57,13 @@ public class TannFont {
 		}
 	}
 	
+	public void drawString(Batch batch, String text, int x, int y, boolean fixedWidth, int align) {
+		if(align==Align.center){
+			drawString(batch, text, x-getWidth(text)/2, y, fixedWidth);
+		}
+		
+	}
+	
 	public int getWidth(String text){
 		return getWidth(text, false);
 	}
@@ -85,4 +93,5 @@ public class TannFont {
 	public int getSpaceWidth(){
 		return 4;
 	}
+	
 }

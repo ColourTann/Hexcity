@@ -37,6 +37,7 @@ public class RulesBlock extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				next();
+				event.stop();
 				return false;
 			}
 		});

@@ -53,6 +53,7 @@ public class ScoreKeeper extends Actor{
 
 	public void finished(){
 		if(finished||finishedFlag)return;
+		
 		if(GameScreen.get().hammurabiMode){
 			totalScore+=score;
 		}
@@ -60,18 +61,17 @@ public class ScoreKeeper extends Actor{
 		switch(GameScreen.get().turnTracker.turns){
 		case 10: type=AchievementType.ScoreTen; break;
 		case 15: type=AchievementType.ScoreFifteen; break;
-		case 20: 
-			type=AchievementType.ScoreTwenty;
-			if(GameScreen.get().hammurabiMode){
-				score=totalScore;
-				Trophy.checkTrophies(AchievementType.ScoreCampaign, totalScore);
-				Main.saveData.increment(GameType.Hammurabi.toString(), 1);
-				Trophy.checkTrophies(AchievementType.PlayCampaigns, Main.saveData.getCount(GameType.Hammurabi.toString()));
-			}
-			
-			break;
+		case 20: type=AchievementType.ScoreTwenty; break;
 		}
 		Trophy.checkTrophies(type, score);
+		Main.saveData.setHighscore(GameScreen.get().gameType, score);
+		if(GameScreen.get().hammurabiMode&&type==AchievementType.ScoreTwenty){
+			score=totalScore;
+			Trophy.checkTrophies(AchievementType.ScoreCampaign, totalScore);
+			Main.saveData.setHighscore(GameType.Hammurabi, score);
+			Main.saveData.increment(GameType.Hammurabi.toString(), 1);
+			Trophy.checkTrophies(AchievementType.PlayCampaigns, Main.saveData.getCount(GameType.Hammurabi.toString()));
+		}
 		finished=true;
 		Main.saveData.increment(GameScreen.get().gameType.toString(), 1);
 	}
