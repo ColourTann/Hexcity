@@ -90,6 +90,7 @@ public class Tile extends Actor{
 					counter++;
 				}
 			}
+			Trophy.checkTrophies(AchievementType.CutDownTreesWithASingleWoodsman, counter);
 			score(counter+1);
 			break;
 		case Garden:
@@ -139,6 +140,7 @@ public class Tile extends Actor{
 			}
 			if(!foundAnotherShrine){
 				score(5);
+				GameScreen.get().scoreKeeper.scoreShrine();
 			}
 			else score(0);
 			break;
@@ -151,6 +153,7 @@ public class Tile extends Actor{
 				counter++;
 			}
 			score(counter);
+			checkForZiggurat();
 			break;
 		default:
 			break;
@@ -158,6 +161,18 @@ public class Tile extends Actor{
 		checkSurroundingTiles();
 		Trophy.checkTrophies(AchievementType.ScorePointsWithASingleTileInTwenty, totalScoreThisPlacement);
 		totalScoreThisPlacement=0;
+	}
+
+	private void checkForZiggurat() {
+		if(adjacentTypes.size()==6){
+			for(Tile t:getAdjacentTiles(1, false)){
+				if(t.type==TileType.Temple){
+					if(t.adjacentTypes.size()==6){
+						Trophy.checkTrophies(AchievementType.Ziggurat, 0);
+					}
+				}
+			}
+		}
 	}
 
 	public void checkSurroundingTiles(){
@@ -172,6 +187,7 @@ public class Tile extends Actor{
 				if(!t.adjacentTypes.contains(type)){
 					t.adjacentTypes.add(type);
 					t.score(1);
+					t.checkForZiggurat();
 				}
 				break;
 			default:

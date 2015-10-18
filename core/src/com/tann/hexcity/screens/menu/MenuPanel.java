@@ -77,7 +77,8 @@ public class MenuPanel extends Group{
 			public void run() {
 				Main.self.currentScreen.popActor();
 				if(Main.self.currentScreen instanceof GameScreen){
-					((GameScreen)Main.self.currentScreen).restart();
+					Main.saveData.addRestart();
+					GameScreen.get().restart();
 				}
 			}
 		});

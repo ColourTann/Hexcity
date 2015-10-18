@@ -17,11 +17,11 @@ public class SaveData {
 	}
 	
 	public boolean isComplete(Trophy t ){
-		return data.getBoolean(t.getShortName(), false);
+		return data.getBoolean("achievement:"+t.getShortName(), false);
 	}
 	
 	public void achieve(Trophy t){
-		data.putBoolean(t.getShortName(), true);
+		data.putBoolean("achievement:"+t.getShortName(), true);
 		data.flush();
 	}
 
@@ -46,5 +46,16 @@ public class SaveData {
 		data.putInteger("highscore"+type.toString(), score);
 		data.flush();
 		return true;
+	}
+
+	public void addRestart() {
+		int restarts = data.getInteger("restartcount", 0);
+		restarts++;
+		Trophy.checkTrophies(AchievementType.Restarts, restarts);
+		data.putInteger("restartcount", restarts);
+	}
+	
+	public void resetRestarts(){
+		data.putInteger("restartcount", 0);
 	}
 }

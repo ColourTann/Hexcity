@@ -11,7 +11,7 @@ import com.tann.hexcity.screens.gameScreen.Tile.TileType;
 public class Grid extends Group{
 	//two lists of tiles, one for getting locations, one for iterating through all tiles
 	private static final int startingTrees=14;
-	private int treesRemoved;
+	public int treesRemoved;
 	private int gardensScored;
 	Tile[][] tiles = new Tile[9][11];
 	ArrayList<Tile> allTiles = new ArrayList<>();
@@ -66,7 +66,6 @@ public class Grid extends Group{
 	
 	public void removeTree(){
 		treesRemoved++;
-		Trophy.checkTrophies(AchievementType.CutDownTreesInFifteen, treesRemoved);
 	}
 	
 	public void scoreGarden(int amount){

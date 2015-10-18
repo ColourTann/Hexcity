@@ -21,7 +21,7 @@ public class Trophy {
 
 	
 
-	static TextureRegion hiddenImage = Main.atlas.findRegion("ui/achievements/hidden");
+	static TextureRegion hiddenImage = Main.atlas.findRegion("achievements/hidden");
 
 	public int x,y;
 	
@@ -32,7 +32,7 @@ public class Trophy {
 	boolean hidden;
 	GameType requiredType;
 	public enum AchievementType{ScoreTen, ScoreFifteen, ScoreTwenty, ScoreCampaign, 
-		MakeGardenSetsInTen, CutDownTreesInFifteen, ScorePointsWithASingleTileInTwenty, PlayCampaigns}
+		MakeGardenSetsInTen, CutDownTreesWithASingleWoodsman, ScorePointsWithASingleTileInTwenty, PlayCampaigns, Restarts, Environmentalist, Ziggurat, Trapped, ScoreShrinesInFifteen}
 	
 	public Trophy(int x, int y, AchievementType type, int target) {
 		setup(x, y, type, target, false);
@@ -89,7 +89,7 @@ public class Trophy {
 			case 2: this.target=170; break;
 			}
 			break;
-		case CutDownTreesInFifteen:
+		case ScoreShrinesInFifteen:
 			requiredType=GameType.Fifteen; break;
 		case MakeGardenSetsInTen:
 			requiredType=GameType.Ten; break;
@@ -99,7 +99,7 @@ public class Trophy {
 		
 			break;
 		}
-		String regionText="ui/achievements/"+type.toString().toLowerCase()+(index>=0?index:"");
+		String regionText="achievements/"+type.toString().toLowerCase()+(index>=0?index:"");
 		region= Main.atlas.findRegion(regionText);
 		TextRenderer.setImage(getShortName(), region);
 	}
@@ -117,7 +117,7 @@ public class Trophy {
 		
 		if(isHidden()) return "????????????";
 		switch(type){
-		case CutDownTreesInFifteen:
+		case CutDownTreesWithASingleWoodsman:
 			return "Deforestation";
 		case MakeGardenSetsInTen:
 			return "Green thumbs";
@@ -149,6 +149,11 @@ public class Trophy {
 			case 1: return "long master";
 			case 2: return "developer highscore";
 			}
+		case Restarts: return "defeatist";
+		case Environmentalist: return "environmentalist";
+		case Ziggurat: return "ziggurat";
+		case Trapped: return "trapped";
+		case ScoreShrinesInFifteen: return "nomad";
 		default:
 			break;
 		}
@@ -158,8 +163,8 @@ public class Trophy {
 	public String getDescription(){
 		if(isHidden()) return "????????????";
 		switch(type){
-		case CutDownTreesInFifteen:
-			return "Cut down "+target+" trees in a single medium game";
+		case CutDownTreesWithASingleWoodsman:
+			return "Cut down "+target+" trees with a single forester";
 		case MakeGardenSetsInTen:
 			return "Make "+target/3+" garden sets in a single short game";
 		case PlayCampaigns:
@@ -174,6 +179,16 @@ public class Trophy {
 			return "Score "+target+" points in short mode";
 		case ScoreTwenty:
 			return "Score "+target+" points in long mode";
+		case Restarts:
+			return "Restart 5 times in a row without even trying. Honestly, Sunil!";
+		case Environmentalist:
+			return "Score "+target+" points without cutting down a single tree";
+		case Ziggurat:
+			return "Build two 5-point temples adjacent to eachother";
+		case Trapped:
+			return "waste over half your turns";
+		case ScoreShrinesInFifteen:
+			return "Score 5 shrines in a single medium game";
 		default:
 			break;
 		}
@@ -200,28 +215,24 @@ public class Trophy {
 			achievementsList.add(new Trophy(3, i+1, AchievementType.ScoreCampaign, 1-i));
 		}
 		achievementsList.add(new Trophy(0, 0, AchievementType.MakeGardenSetsInTen, 6));
-		achievementsList.add(new Trophy(1, 0, AchievementType.CutDownTreesInFifteen, 9));
+		achievementsList.add(new Trophy(1, 0, AchievementType.ScoreShrinesInFifteen, 4));
 		achievementsList.add(new Trophy(2, 0, AchievementType.ScorePointsWithASingleTileInTwenty, 18));
 		achievementsList.add(new Trophy(3, 0, AchievementType.PlayCampaigns, 20));
+		achievementsList.add(new Trophy(4, 0, AchievementType.CutDownTreesWithASingleWoodsman, 4, false));
+		achievementsList.add(new Trophy(5, 0, AchievementType.Environmentalist, 60, false));
+		achievementsList.add(new Trophy(6, 0, AchievementType.Ziggurat, 0, false));
 		
-		
-		//456 012 hidden achievements
 		achievementsList.add(new Trophy(4, 2, AchievementType.ScoreTen, 2, true));
 		achievementsList.add(new Trophy(4, 1, AchievementType.ScoreFifteen, 2, true));
 		achievementsList.add(new Trophy(5, 1, AchievementType.ScoreTwenty, 2, true));
 		achievementsList.add(new Trophy(5, 2, AchievementType.ScoreCampaign, 2, true));
 		
-//		for(int x=4;x<7;x++){
-//			for(int y=0;y<3;y++){
-//				achievementsList.add(new Trophy(x, y, AchievementType.Hidden, 0));
-//			}
-//		}
+		achievementsList.add(new Trophy(6, 1, AchievementType.Restarts, 10, true));
+		achievementsList.add(new Trophy(6, 2, AchievementType.Trapped, 5, true));
 		
 	}
 	
-	public static void checkTrophies(AchievementType action){
-		checkTrophies(action, -1);
-	}
+	
 
 	public static void checkTrophies(AchievementType action, int arg){
 		System.out.println("checking "+action+" "+arg);

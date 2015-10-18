@@ -2,6 +2,7 @@ package com.tann.hexcity.screens.gameScreen.ui;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.tann.hexcity.Main;
 import com.tann.hexcity.screens.gameScreen.GameScreen;
 
 import game.util.Colours;
@@ -37,6 +38,7 @@ public class TurnTracker extends Actor{
 	}
 
 	public void incrementTurns() {
+		if(turnsTaken==0) Main.saveData.resetRestarts();
 		if(bonusHutTurn){
 			return;
 		}

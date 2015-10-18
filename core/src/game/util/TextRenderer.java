@@ -207,7 +207,7 @@ public class TextRenderer extends Actor{
 		}
 		batch.end();
 		buffer.end();
-		buffer.unbind();
+		FrameBuffer.unbind();
 		buffer.getColorBufferTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		Main.self.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
@@ -217,7 +217,7 @@ public class TextRenderer extends Actor{
 	public static void setupTextures(){
 		TextRenderer.setImage("arrow", Main.atlas.findRegion("ui/arrow"));
 		TextRenderer.setImage("chiev", Main.atlas.findRegion("ui/achievement"));
-		TextRenderer.setImage("hiddenachievement", Main.atlas.findRegion("ui/achievements/hidden"));
+		TextRenderer.setImage("hiddenachievement", Main.atlas.findRegion("achievements/hidden"));
 		for(TileType type:TileType.values()){
 			TextRenderer.setImage(type.toString().toLowerCase(), type.region);
 		}

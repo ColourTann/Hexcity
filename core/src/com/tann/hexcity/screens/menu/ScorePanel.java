@@ -52,7 +52,4 @@ public class ScorePanel extends Actor{
 		TannFont.font.drawString(batch, "HIGHSCORES", (int)(getX()+getWidth()/2), (int)getY()+textY+textGap*4, false, Align.center);
 		super.draw(batch, parentAlpha);
 	}
-
-	
-
 }

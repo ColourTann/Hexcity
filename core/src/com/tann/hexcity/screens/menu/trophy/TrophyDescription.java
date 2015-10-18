@@ -32,6 +32,7 @@ public class TrophyDescription extends Group{
 	}
 	
 	public void refresh(){
+		if(tr!=null)tr.remove();
 		String text = (" "+a.getName()+" ").toUpperCase();
 		setWidth(a.getTexture().getRegionWidth()*2+TannFont.font.getWidth(text)+gap*2+2);
 		tr= new TextRenderer(a.getRendererIconName()+text+a.getRendererIconName()+"[n]"+a.getDescription().toUpperCase(), (int)(getWidth()-gap*2));

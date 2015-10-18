@@ -41,7 +41,7 @@ public class GameScreen extends Screen{
 
 
 	public TilePicker typePicked;
-	Grid grid = new Grid();
+	public Grid grid = new Grid();
 	ScoreKeeper scoreKeeper = new ScoreKeeper();
 	PauseButton pauseButton = new PauseButton();
 	ArrayList<TilePicker> pickers = new ArrayList<TilePicker>();

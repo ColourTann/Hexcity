@@ -14,6 +14,7 @@ import game.util.TannFont;
 public class ScoreKeeper extends Actor{
 	public int totalScore=0;
 	public int score=0;
+	int shrinesScored;
 	public boolean finishedFlag;
 	private boolean finished;
 
@@ -45,6 +46,7 @@ public class ScoreKeeper extends Actor{
 	}
 
 	public void reset(boolean full) {
+		shrinesScored=0;
 		finished=false;
 		finishedFlag=false;
 		score=0;
@@ -53,7 +55,11 @@ public class ScoreKeeper extends Actor{
 
 	public void finished(){
 		if(finished||finishedFlag)return;
-		
+		int ratio = (GameScreen.get().turnTracker.turnsTaken*10)/GameScreen.get().turnTracker.turns;
+		Trophy.checkTrophies(AchievementType.Trapped, 10-ratio);
+		if(GameScreen.get().grid.treesRemoved==0){
+			Trophy.checkTrophies(AchievementType.Environmentalist, score);
+		}
 		if(GameScreen.get().hammurabiMode){
 			totalScore+=score;
 		}
@@ -74,6 +80,11 @@ public class ScoreKeeper extends Actor{
 		}
 		finished=true;
 		Main.saveData.increment(GameScreen.get().gameType.toString(), 1);
+	}
+	
+	public void scoreShrine(){
+		shrinesScored++;
+		Trophy.checkTrophies(AchievementType.ScoreShrinesInFifteen, shrinesScored);
 	}
 }
 

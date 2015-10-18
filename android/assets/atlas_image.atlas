@@ -4,6 +4,167 @@ size: 128,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+achievements/cutdowntreeswithasinglewoodsman
+  rotate: false
+  xy: 61, 65
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/doubletemple
+  rotate: false
+  xy: 79, 76
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/environmentalist
+  rotate: false
+  xy: 79, 76
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/hidden
+  rotate: false
+  xy: 97, 87
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+ui/hiddenachievement
+  rotate: false
+  xy: 97, 87
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/makegardensetsinten
+  rotate: false
+  xy: 58, 54
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/playcampaigns
+  rotate: false
+  xy: 72, 65
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/restarts
+  rotate: false
+  xy: 90, 76
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scorecampaign0
+  rotate: false
+  xy: 69, 54
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scorecampaign1
+  rotate: false
+  xy: 83, 65
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scorecampaign2
+  rotate: false
+  xy: 80, 54
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scorefifteen0
+  rotate: false
+  xy: 44, 40
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scorefifteen1
+  rotate: false
+  xy: 101, 76
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scorefifteen2
+  rotate: false
+  xy: 94, 65
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scoreshrinesinfifteen
+  rotate: false
+  xy: 91, 54
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scoreten0
+  rotate: false
+  xy: 105, 65
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scoreten1
+  rotate: false
+  xy: 102, 54
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scoreten2
+  rotate: false
+  xy: 38, 29
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scoretwenty0
+  rotate: false
+  xy: 38, 18
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scoretwenty1
+  rotate: false
+  xy: 37, 7
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/scoretwenty2
+  rotate: false
+  xy: 49, 29
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/trapped
+  rotate: false
+  xy: 49, 18
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+achievements/ziggurat
+  rotate: false
+  xy: 48, 7
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
 font/font
   rotate: false
   xy: 2, 109
@@ -102,128 +263,9 @@ ui/achievement
   orig: 9, 9
   offset: 0, 0
   index: -1
-ui/achievements/scorepointswithasingletileintwenty
+achievements/scorepointswithasingletileintwenty
   rotate: false
   xy: 98, 98
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/cutdowntreesinfifteen
-  rotate: false
-  xy: 61, 65
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/hidden
-  rotate: false
-  xy: 79, 76
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/hiddenachievement
-  rotate: false
-  xy: 79, 76
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/makegardensetsinten
-  rotate: false
-  xy: 97, 87
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/playcampaigns
-  rotate: false
-  xy: 58, 54
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scorecampaign0
-  rotate: false
-  xy: 72, 65
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scorecampaign1
-  rotate: false
-  xy: 90, 76
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scorecampaign2
-  rotate: false
-  xy: 69, 54
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scorefifteen0
-  rotate: false
-  xy: 83, 65
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scorefifteen1
-  rotate: false
-  xy: 80, 54
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scorefifteen2
-  rotate: false
-  xy: 44, 40
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scoreten0
-  rotate: false
-  xy: 101, 76
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scoreten1
-  rotate: false
-  xy: 94, 65
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scoreten2
-  rotate: false
-  xy: 91, 54
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scoretwenty0
-  rotate: false
-  xy: 105, 65
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scoretwenty1
-  rotate: false
-  xy: 102, 54
-  size: 9, 9
-  orig: 9, 9
-  offset: 0, 0
-  index: -1
-ui/achievements/scoretwenty2
-  rotate: false
-  xy: 38, 29
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
