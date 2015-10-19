@@ -32,6 +32,7 @@ public class SaveData {
 		int count = data.getInteger(string, 0);
 		count += i;
 		data.putInteger(string, count);
+		data.flush();
 	}
 	
 	public int getCount(String key){
@@ -45,7 +46,8 @@ public class SaveData {
 	
 	public boolean setHighscore(GameType type, int score){
 		int prevScore = getHighScore(type);
-		if(prevScore>score) return false;
+		if(prevScore>=score) return false;
+		System.out.println("showing notif");
 		if(prevScore!=0) GameScreen.get().newNotification.add(new HighscoreIcon(type, prevScore, score));
 		data.putInteger("highscore"+type.toString(), score);
 		data.flush();
@@ -57,6 +59,7 @@ public class SaveData {
 		restarts++;
 		Trophy.checkTrophies(AchievementType.Restarts, restarts);
 		data.putInteger("restartcount", restarts);
+		data.flush();
 	}
 	
 	public void resetRestarts(){
@@ -69,5 +72,14 @@ public class SaveData {
 		data.putBoolean("openedthegamebefore", true);
 		data.flush();
 		return true;
+	}
+
+	public void toggleMute(){
+		data.putBoolean("mute", !isMuted());
+		data.flush();
+	}
+	
+	public boolean isMuted() {
+		return data.getBoolean("mute", false);
 	}
 }

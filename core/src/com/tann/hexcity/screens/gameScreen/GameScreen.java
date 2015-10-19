@@ -98,6 +98,10 @@ public class GameScreen extends Screen{
 						reset(false);
 						break;
 					case 20: 
+						if(!scoreKeeper.shownBreakdown){
+							scoreKeeper.showBreakdown();
+							return false;
+						}
 						Main.self.setScreen(TitleScreen.get(), TransitionType.RIGHT, Interpolation.pow2Out, Main.screenTransitionSpeed);
 						break;
 					}

@@ -3,6 +3,7 @@ package com.tann.hexcity;
 
 import game.util.Colours;
 import game.util.Screen;
+import game.util.Sounds;
 import game.util.TextRenderer;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -107,6 +108,7 @@ public class Main extends ApplicationAdapter {
 
 		});
 		TextRenderer.setupTextures();
+		Sounds.loadAll();
 	}
 
 	@Override

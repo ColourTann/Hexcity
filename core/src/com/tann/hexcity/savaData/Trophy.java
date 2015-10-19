@@ -13,14 +13,6 @@ import game.util.TextRenderer;
 
 public class Trophy {
 
-
-	
-
-
-	
-
-	
-
 	static TextureRegion hiddenImage = Main.atlas.findRegion("achievements/hidden");
 
 	public int x,y;
@@ -58,9 +50,9 @@ public class Trophy {
 			this.index=target;
 			requiredType=GameType.Ten;
 			switch(index){
-			case 0: this.target=35; break;
-			case 1: this.target=40; break;
-			case 2: this.target=43; break;
+			case 0: this.target=30; break;
+			case 1: this.target=38; break;
+			case 2: this.target=42; break;
 			}
 			break;
 		case ScoreFifteen:
@@ -68,7 +60,7 @@ public class Trophy {
 			this.index=target;
 			switch(index){
 			case 0: this.target=45; break;
-			case 1: this.target=60; break;
+			case 1: this.target=55; break;
 			case 2: this.target=65; break;
 			}
 			break;
@@ -84,7 +76,7 @@ public class Trophy {
 		case ScoreCampaign:
 			this.index=target;
 			switch(index){
-			case 0: this.target=150; break;
+			case 0: this.target=145; break;
 			case 1: this.target=160; break;
 			case 2: this.target=170; break;
 			}
@@ -180,7 +172,7 @@ public class Trophy {
 		case ScoreTwenty:
 			return "Score "+target+" points in long mode";
 		case Restarts:
-			return "Restart 5 times in a row without even trying. Honestly, Sunil!";
+			return "Restart "+target+" times in a row without even trying. Honestly, Sunil!";
 		case Environmentalist:
 			return "Score "+target+" points without cutting down a single tree";
 		case Ziggurat:
@@ -228,7 +220,7 @@ public class Trophy {
 		achievementsList.add(new Trophy(4, 1, AchievementType.ScoreTwenty, 2, hide));
 		achievementsList.add(new Trophy(5, 1, AchievementType.ScoreCampaign, 2, hide));
 		
-		achievementsList.add(new Trophy(6, 1, AchievementType.Restarts, 10, hide));
+		achievementsList.add(new Trophy(6, 1, AchievementType.Restarts, 5, hide));
 		achievementsList.add(new Trophy(6, 2, AchievementType.Trapped, 5, hide));
 		
 	}

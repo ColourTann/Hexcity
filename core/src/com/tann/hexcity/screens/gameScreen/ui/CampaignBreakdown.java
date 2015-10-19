@@ -7,7 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.tann.hexcity.Main;
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
 import game.util.TextRenderer;
+import game.util.Sounds.SoundType;
 
 public class CampaignBreakdown extends Group{
 	TextRenderer tr;
@@ -25,6 +27,7 @@ public class CampaignBreakdown extends Group{
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.popActor();
+				Sounds.playSound(SoundType.PopMenu);
 				event.stop();
 				return false;
 			}

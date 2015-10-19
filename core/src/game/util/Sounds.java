@@ -2,6 +2,7 @@ package game.util;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.tann.hexcity.Main;
 
 public class Sounds {
 	public enum SoundType{SelectTile, PlayTile, PushMenu, PopMenu}
@@ -12,11 +13,11 @@ public class Sounds {
 	private static void playSound(Sound sound){
 		float variance = .12f;
 		float add = (float) (Math.random()*variance*2-variance);
-		System.out.println(add);
 		sound.play(1, 1+add, 0);
 	}
 	
 	public static void playSound(SoundType type){
+		if(Main.saveData.isMuted())return;
 		switch(type){
 		case PlayTile:
 			playSound(click1);
@@ -34,5 +35,12 @@ public class Sounds {
 			break;
 			
 		}
+	}
+
+	public static void loadAll() {
+		click0.play(0);
+		click1.play(0);
+		pushMenu.play(0);
+		popMenu.play(0);
 	}
 }

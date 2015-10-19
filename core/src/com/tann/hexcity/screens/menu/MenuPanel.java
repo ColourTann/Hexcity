@@ -27,7 +27,8 @@ public class MenuPanel extends Group{
 	public static final int helpX=19, helpY=16;
 	private static final int rulesX=14,rulesY=37;
 	private static final int trophyX=58,scoreX=77,trophyY=30;
-	private static final int restartX=68,restartY=4,quitY=16;
+	private static final int restartX=52,restartY=4,quitY=16, muteX=72;
+	
 	static Group menuContainerGroup;
 	public static MenuPanel get(){
 		if(self==null)self = new MenuPanel();
@@ -68,7 +69,7 @@ public class MenuPanel extends Group{
 				Main.self.setScreen(TitleScreen.get(), TransitionType.RIGHT, Interpolation.pow2Out, Main.screenTransitionSpeed);
 			}
 		});
-		quitButton.setPosition((int)(restartX-quitButton.getWidth()/2), quitY);
+		quitButton.setPosition((int)(restartX), quitY);
 		addActor(quitButton);
 
 		Button restartButton = new Button("RESTART", new Runnable() {
@@ -82,9 +83,13 @@ public class MenuPanel extends Group{
 				}
 			}
 		});
-		restartButton.setPosition((int)(restartX-restartButton.getWidth()/2), restartY);
+		restartButton.setPosition((int)(restartX), restartY);
 		addActor(restartButton);
 
+		MuteButton mb = new MuteButton();
+		mb.setPosition(muteX, quitY);
+		addActor(mb);
+		
 		for(TileType type:TileType.values()){
 			if(type==TileType.Empty) continue;
 			TileHelp help = new TileHelp(type);

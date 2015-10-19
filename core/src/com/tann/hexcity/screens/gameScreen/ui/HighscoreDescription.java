@@ -9,13 +9,15 @@ import com.tann.hexcity.screens.gameScreen.GameScreen.GameType;
 
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
 import game.util.TextRenderer;
+import game.util.Sounds.SoundType;
 
 public class HighscoreDescription extends Group{
 	TextRenderer tr;
 	static final int gap = 2;
 	public HighscoreDescription(GameType type, int oldScore, int newScore) {
-		tr = new TextRenderer(("new highscore for "+type.description+"[n]Old score: "+oldScore+"[n]New score: "+newScore).toUpperCase(), 70);
+		tr = new TextRenderer(("new highscore for "+type.description+"[n]New score: "+newScore+"[n]Old score: "+oldScore).toUpperCase(), 70);
 		setSize(tr.getWidth()+gap*2, tr.getHeight()+gap*2);
 		tr.setPosition(gap, gap);
 		addActor(tr);
@@ -23,6 +25,7 @@ public class HighscoreDescription extends Group{
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.popActor();
+				Sounds.playSound(SoundType.PopMenu);
 				event.stop();
 				return false;
 			}

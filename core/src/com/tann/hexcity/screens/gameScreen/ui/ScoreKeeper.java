@@ -17,6 +17,7 @@ public class ScoreKeeper extends Actor{
 	int shrinesScored;
 	public boolean finished;
 	int[] scores = new int[3];
+	public boolean shownBreakdown;
 	@Override
 	public void act(float delta) {
 		super.act(delta);
@@ -47,7 +48,7 @@ public class ScoreKeeper extends Actor{
 		shrinesScored=0;
 		finished=false;
 		score=0;
-		
+		shownBreakdown=false;
 		if(full){
 			totalScore=0;
 			for(int i=0;i<scores.length;i++){
@@ -79,7 +80,6 @@ public class ScoreKeeper extends Actor{
 			Main.saveData.setHighscore(GameType.Hammurabi, totalScore);
 			Main.saveData.increment(GameType.Hammurabi.toString(), 1);
 			Trophy.checkTrophies(AchievementType.PlayCampaigns, Main.saveData.getCount(GameType.Hammurabi.toString()));
-			Main.self.currentScreen.pushActor(new CampaignBreakdown(scores, totalScore));
 		}
 		finished=true;
 		Main.saveData.increment(GameScreen.get().gameType.toString(), 1);
@@ -88,6 +88,11 @@ public class ScoreKeeper extends Actor{
 	public void scoreShrine(){
 		shrinesScored++;
 		Trophy.checkTrophies(AchievementType.ScoreShrinesInFifteen, shrinesScored);
+	}
+
+	public void showBreakdown() {
+		shownBreakdown=true;
+		Main.self.currentScreen.pushActor(new CampaignBreakdown(scores, totalScore));
 	}
 }
 

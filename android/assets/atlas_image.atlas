@@ -298,6 +298,13 @@ ui/highscore
   orig: 9, 9
   offset: 0, 0
   index: -1
+ui/mute
+  rotate: false
+  xy: 11, 2
+  size: 7, 5
+  orig: 7, 5
+  offset: 0, 0
+  index: -1
 ui/score
   rotate: false
   xy: 113, 113
@@ -331,6 +338,13 @@ ui/smallertile
   xy: 80, 86
   size: 15, 9
   orig: 15, 9
+  offset: 0, 0
+  index: -1
+ui/sound
+  rotate: false
+  xy: 20, 2
+  size: 7, 5
+  orig: 7, 5
   offset: 0, 0
   index: -1
 ui/trophy
