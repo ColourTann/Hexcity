@@ -25,9 +25,9 @@ public class TitleScreen extends Screen{
 	static final int titleOffsetX=27;
 	static final int titleOffsetY=48;
 	
-	static final int buttonX=25;
+	static final int buttonX=24;
 	static final int buttonY=28;
-	static final int buttonXGap=41;
+	static final int buttonXGap=42;
 	static final int buttonYGap=12;
 	
 	static TextureRegion[] cuneiform = new TextureRegion[]{Main.atlas.findRegion("ui/cuneiform1"),Main.atlas.findRegion("ui/cuneiform2")};
@@ -76,7 +76,9 @@ public class TitleScreen extends Screen{
 			}
 		});
 		addActor(a);
-		
+		if(Main.saveData.firstTime()){
+			pushActor(new AnnoyingFirstTimePopup());
+		}
 	}
 	
 	public void startGame(GameType type){

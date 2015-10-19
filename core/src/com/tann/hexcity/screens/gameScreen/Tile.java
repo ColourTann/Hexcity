@@ -15,8 +15,10 @@ import com.tann.hexcity.savaData.Trophy.AchievementType;
 
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
 import game.util.TannFont;
 import game.util.TextRenderer;
+import game.util.Sounds.SoundType;
 
 public class Tile extends Actor{
 	public static final int tileWidth=16;
@@ -61,9 +63,11 @@ public class Tile extends Actor{
 				if(type!=TileType.Empty) return false;
 				if(GameScreen.get().typePicked==null) return false;
 				if(!GameScreen.get().grid.lastTilePlaced.isAdjacentTo(Tile.this)) return false;
+				Sounds.playSound(SoundType.PlayTile);
 				setType(GameScreen.get().typePicked.type);
 				placementEffect();
 				GameScreen.get().tilePlaced(Tile.this);
+				event.stop();
 				return false;
 			}
 		});

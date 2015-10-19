@@ -37,12 +37,12 @@ public class TrophyPanel extends Group{
 		setSize(trophyPanelWidth, trophyPanelHeight);
 		setPosition((int)(Main.width/2-(int)getWidth()/2), (int)(Main.height/2-getHeight()/2));
 		
-//		addListener(new InputListener(){
-//			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-//				Main.self.currentScreen.popActor();
-//				return false;
-//			}
-//		});
+		addListener(new InputListener(){
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				event.stop();
+				return false;
+			}
+		});
 	
 		for(int i=0;i<Trophy.achievementsList.size();i++){
 			Trophy a= Trophy.achievementsList.get(i);

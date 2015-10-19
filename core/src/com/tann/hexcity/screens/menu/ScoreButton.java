@@ -9,6 +9,8 @@ import com.tann.hexcity.Main;
 
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
+import game.util.Sounds.SoundType;
 
 public class ScoreButton extends Actor{
 	static TextureRegion scoreTexture = Main.atlas.findRegion("ui/score");
@@ -19,6 +21,7 @@ public class ScoreButton extends Actor{
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.pushActor(ScorePanel.get());
+				Sounds.playSound(SoundType.PushMenu);
 				event.cancel();
 				return false;
 			}

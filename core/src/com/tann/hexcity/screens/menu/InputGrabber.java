@@ -5,6 +5,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.tann.hexcity.Main;
 
+import game.util.Sounds;
+import game.util.Sounds.SoundType;
+
 public class InputGrabber extends Group{
 //	private static InputGrabber self;
 //	public static InputGrabber get(){
@@ -17,6 +20,7 @@ public class InputGrabber extends Group{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.popActor();
+				Sounds.playSound(SoundType.PopMenu);
 				event.stop();
 				return false;
 			}

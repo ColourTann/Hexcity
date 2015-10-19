@@ -9,7 +9,9 @@ import com.tann.hexcity.screens.gameScreen.GameScreen.GameType;
 
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
 import game.util.TannFont;
+import game.util.Sounds.SoundType;
 
 public class StartGameButton extends Actor{
 	static final int buttWidth=39;
@@ -20,6 +22,7 @@ public class StartGameButton extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				TitleScreen.self.startGame(StartGameButton.this.type);
+				Sounds.playSound(SoundType.PushMenu);
 				return false;
 			}
 			

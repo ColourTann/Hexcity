@@ -10,6 +10,8 @@ import com.tann.hexcity.screens.menu.MenuPanel;
 
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
+import game.util.Sounds.SoundType;
 
 public class TileHelp extends Actor{
 	TileType type;
@@ -19,6 +21,7 @@ public class TileHelp extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.pushActor(new RulesBlock("["+type.toString().toLowerCase()+"] "+type.toString().toUpperCase()+" ["+type.toString().toLowerCase()+"]"+"[n]"+type.rulesText.toUpperCase()));
+				Sounds.playSound(SoundType.PushMenu);
 				event.stop();
 				return false;
 			}

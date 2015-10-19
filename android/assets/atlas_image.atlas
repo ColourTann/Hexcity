@@ -6,336 +6,336 @@ filter: Nearest,Nearest
 repeat: none
 achievements/cutdowntreeswithasinglewoodsman
   rotate: false
-  xy: 61, 65
+  xy: 61, 64
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/doubletemple
   rotate: false
-  xy: 79, 76
+  xy: 79, 75
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/environmentalist
   rotate: false
-  xy: 79, 76
+  xy: 79, 75
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/hidden
   rotate: false
-  xy: 97, 87
+  xy: 97, 86
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 ui/hiddenachievement
   rotate: false
-  xy: 97, 87
+  xy: 97, 86
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/makegardensetsinten
   rotate: false
-  xy: 58, 54
+  xy: 72, 64
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/playcampaigns
   rotate: false
-  xy: 72, 65
+  xy: 90, 75
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/restarts
   rotate: false
-  xy: 90, 76
+  xy: 69, 53
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scorecampaign0
   rotate: false
-  xy: 69, 54
+  xy: 83, 64
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scorecampaign1
   rotate: false
-  xy: 83, 65
+  xy: 80, 53
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scorecampaign2
   rotate: false
-  xy: 80, 54
+  xy: 44, 39
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scorefifteen0
   rotate: false
-  xy: 44, 40
+  xy: 101, 75
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scorefifteen1
   rotate: false
-  xy: 101, 76
+  xy: 94, 64
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scorefifteen2
   rotate: false
-  xy: 94, 65
+  xy: 91, 53
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scoreshrinesinfifteen
   rotate: false
-  xy: 91, 54
+  xy: 105, 64
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scoreten0
   rotate: false
-  xy: 105, 65
+  xy: 102, 53
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scoreten1
   rotate: false
-  xy: 102, 54
+  xy: 38, 28
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scoreten2
   rotate: false
-  xy: 38, 29
+  xy: 38, 17
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scoretwenty0
   rotate: false
-  xy: 38, 18
+  xy: 37, 6
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scoretwenty1
   rotate: false
-  xy: 37, 7
+  xy: 49, 28
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scoretwenty2
   rotate: false
-  xy: 49, 29
+  xy: 49, 17
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/trapped
   rotate: false
-  xy: 49, 18
+  xy: 48, 6
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/ziggurat
   rotate: false
-  xy: 48, 7
+  xy: 55, 39
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 font/font
   rotate: false
-  xy: 2, 109
+  xy: 2, 108
   size: 109, 17
   orig: 109, 17
   offset: 0, 0
   index: -1
 pixel
   rotate: false
-  xy: 38, 40
+  xy: 38, 39
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 tile/available
   rotate: false
-  xy: 2, 32
+  xy: 2, 31
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/empty
   rotate: false
-  xy: 44, 98
+  xy: 44, 97
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/garden
   rotate: false
-  xy: 2, 21
+  xy: 2, 20
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/hut
   rotate: false
-  xy: 20, 32
+  xy: 20, 31
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/logger
   rotate: false
-  xy: 44, 87
+  xy: 44, 86
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/meeting
   rotate: false
-  xy: 62, 98
+  xy: 62, 97
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/score
   rotate: false
-  xy: 2, 10
+  xy: 2, 9
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/shrine
   rotate: false
-  xy: 20, 21
+  xy: 20, 20
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/temple
   rotate: false
-  xy: 44, 76
+  xy: 44, 75
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/trees
   rotate: false
-  xy: 62, 87
+  xy: 62, 86
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 tile/whitehex
   rotate: false
-  xy: 80, 98
+  xy: 80, 97
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 ui/achievement
   rotate: false
-  xy: 98, 98
+  xy: 98, 97
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 achievements/scorepointswithasingletileintwenty
   rotate: false
-  xy: 98, 98
+  xy: 98, 97
   size: 9, 9
   orig: 9, 9
   offset: 0, 0
   index: -1
 ui/arrow
   rotate: false
-  xy: 9, 3
+  xy: 2, 2
   size: 7, 5
   orig: 7, 5
   offset: 0, 0
   index: -1
 ui/cuneiform1
   rotate: false
-  xy: 2, 43
+  xy: 2, 42
   size: 19, 64
   orig: 19, 64
   offset: 0, 0
   index: -1
 ui/cuneiform2
   rotate: false
-  xy: 23, 43
+  xy: 23, 42
   size: 19, 64
   orig: 19, 64
   offset: 0, 0
   index: -1
-ui/lock
+ui/highscore
   rotate: false
-  xy: 2, 2
-  size: 5, 6
-  orig: 5, 6
+  xy: 58, 53
+  size: 9, 9
+  orig: 9, 9
   offset: 0, 0
   index: -1
 ui/score
   rotate: false
-  xy: 113, 114
+  xy: 113, 113
   size: 12, 12
   orig: 12, 12
   offset: 0, 0
   index: -1
 ui/smallergarden
   rotate: false
-  xy: 20, 10
+  xy: 20, 9
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 ui/smallerlogger
   rotate: false
-  xy: 44, 65
+  xy: 44, 64
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 ui/smallershrine
   rotate: false
-  xy: 62, 76
+  xy: 62, 75
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 ui/smallertile
   rotate: false
-  xy: 80, 87
+  xy: 80, 86
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 ui/trophy
   rotate: false
-  xy: 44, 51
+  xy: 44, 50
   size: 12, 12
   orig: 12, 12
   offset: 0, 0

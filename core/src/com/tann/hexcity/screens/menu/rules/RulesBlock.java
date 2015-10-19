@@ -9,7 +9,9 @@ import com.tann.hexcity.screens.menu.MenuPanel;
 
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
 import game.util.TextRenderer;
+import game.util.Sounds.SoundType;
 
 public class RulesBlock extends Actor{
 	TextRenderer tr;
@@ -37,6 +39,7 @@ public class RulesBlock extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				next();
+				Sounds.playSound(SoundType.PopMenu);
 				event.stop();
 				return false;
 			}

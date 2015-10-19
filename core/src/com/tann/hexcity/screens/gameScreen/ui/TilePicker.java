@@ -12,6 +12,8 @@ import com.tann.hexcity.screens.gameScreen.Tile.TileType;
 
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
+import game.util.Sounds.SoundType;
 
 public class TilePicker extends Actor{
 	public TileType type;
@@ -24,6 +26,7 @@ public class TilePicker extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				if(finished)return false;
+				Sounds.playSound(SoundType.SelectTile);
 				GameScreen.get().pickTile(TilePicker.this);
 				pick();
 				return false;

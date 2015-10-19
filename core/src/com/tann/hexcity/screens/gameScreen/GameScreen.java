@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -13,6 +14,8 @@ import com.tann.hexcity.Main.TransitionType;
 import com.tann.hexcity.savaData.Trophy;
 import com.tann.hexcity.savaData.Trophy.AchievementType;
 import com.tann.hexcity.screens.gameScreen.GameScreen.GameType;
+import com.tann.hexcity.screens.gameScreen.ui.CampaignBreakdown;
+import com.tann.hexcity.screens.gameScreen.ui.HighscoreIcon;
 import com.tann.hexcity.screens.gameScreen.ui.ScoreKeeper;
 import com.tann.hexcity.screens.gameScreen.ui.TilePicker;
 import com.tann.hexcity.screens.gameScreen.ui.TurnTracker;
@@ -22,7 +25,9 @@ import com.tann.hexcity.screens.titleScreen.TitleScreen;
 
 import game.util.Colours;
 import game.util.Screen;
+import game.util.Sounds;
 import game.util.TannFont;
+import game.util.Sounds.SoundType;
 
 public class GameScreen extends Screen{
 	public enum GameType{
@@ -79,7 +84,7 @@ public class GameScreen extends Screen{
 		addListener(new InputListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				if(!scoreKeeper.finishedFlag)return false;
+				if(!scoreKeeper.finished)return false;
 				if(hammurabiMode){
 					switch(turnTracker.turns){
 					case 10:
@@ -179,41 +184,46 @@ public class GameScreen extends Screen{
 
 	@Override
 	public void keyPressed(int keycode) {
+//		pushActor(new CampaignBreakdown(new int[]{5,5,50}, 60));
 		
 	}
 
-	ArrayList<TrophyIcon> newAchievements = new ArrayList<>();
-	ArrayList<TrophyIcon> currentAchievements = new ArrayList<>();
+	public ArrayList<Actor> newNotification = new ArrayList<>();
+	ArrayList<Actor> oldNotifications = new ArrayList<>();
 
+
+	
 	public void showAchievement(Trophy a){
-		newAchievements.add(new TrophyIcon(a));
+		newNotification.add(new TrophyIcon(a));
 	}
 
 	private void setupNewAchievements(){
-		if(newAchievements.size()==0)return;
-		for(int i=0;i<newAchievements.size();i++){
-			final TrophyIcon icon = newAchievements.get(i);
+		if(newNotification.size()==0)return;
+		for(int i=0;i<newNotification.size();i++){
+			final Actor icon = newNotification.get(i);
 			addActor(icon);
-			currentAchievements.add(0, icon);
+			oldNotifications.add(0, icon);
 			icon.setPosition(getWidth()-icon.getWidth(), -(icon.getHeight()-1)*(i+1));
 			icon.addListener(new InputListener(){
 				@Override
 				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 					icon.addAction(Actions.moveTo(icon.getX()+icon.getWidth(), icon.getY(), .3f, Interpolation.pow2Out));
-					currentAchievements.remove(icon);
+					oldNotifications.remove(icon);
 					updateAchievementLocations();
+					if(icon instanceof HighscoreIcon) Sounds.playSound(SoundType.PushMenu);
+					event.stop();
 					return false;
 				}
 			});
 		}
 		updateAchievementLocations();
-		newAchievements.clear();
+		newNotification.clear();
 
 	}
 
 	public void updateAchievementLocations(){
-		for(int i=0;i<currentAchievements.size();i++){
-			TrophyIcon icon = currentAchievements.get(i);
+		for(int i=0;i<oldNotifications.size();i++){
+			Actor icon = oldNotifications.get(i);
 			icon.addAction(Actions.moveTo(icon.getX(), (int)(icon.getHeight()-1)*i, .3f, Interpolation.linear));
 		}
 

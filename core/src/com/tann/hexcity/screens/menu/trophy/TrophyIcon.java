@@ -11,11 +11,13 @@ import com.tann.hexcity.savaData.Trophy.AchievementType;
 
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
+import game.util.Sounds.SoundType;
 
 public class TrophyIcon extends Actor{
 	Trophy a;
 	private static TextureRegion measureIcon = Main.atlas.findRegion("ui/achievement");
-	private static final int gap = 2;
+	public static final int gap = 2;
 	public static int iconWidth=measureIcon.getRegionWidth()+gap*2, iconHeight = measureIcon.getRegionHeight()+gap*2;
 	public TrophyIcon(final Trophy a) {
 		this.a=a;
@@ -23,6 +25,7 @@ public class TrophyIcon extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.pushActor(a.getDesciptionPanel());
+				Sounds.playSound(SoundType.PushMenu);
 				event.stop();
 				return false;
 			}

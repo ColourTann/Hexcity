@@ -6,13 +6,16 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
 import game.util.TannFont;
+import game.util.Sounds.SoundType;
 
 public class PauseButton extends Actor{
 	public PauseButton() {
 		setSize(TannFont.font.getWidth("MENU", false)+4, 9);
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				Sounds.playSound(SoundType.PushMenu);
 				MenuPanel.show();
 				event.stop();
 				return false;

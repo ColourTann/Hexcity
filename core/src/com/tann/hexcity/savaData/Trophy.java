@@ -188,7 +188,7 @@ public class Trophy {
 		case Trapped:
 			return "waste over half your turns";
 		case ScoreShrinesInFifteen:
-			return "Score 5 shrines in a single medium game";
+			return "Score "+target+" shrines in a single medium game";
 		default:
 			break;
 		}
@@ -222,13 +222,14 @@ public class Trophy {
 		achievementsList.add(new Trophy(5, 0, AchievementType.Environmentalist, 60, false));
 		achievementsList.add(new Trophy(6, 0, AchievementType.Ziggurat, 0, false));
 		
-		achievementsList.add(new Trophy(4, 2, AchievementType.ScoreTen, 2, true));
-		achievementsList.add(new Trophy(4, 1, AchievementType.ScoreFifteen, 2, true));
-		achievementsList.add(new Trophy(5, 1, AchievementType.ScoreTwenty, 2, true));
-		achievementsList.add(new Trophy(5, 2, AchievementType.ScoreCampaign, 2, true));
+		boolean hide = true;
+		achievementsList.add(new Trophy(4, 2, AchievementType.ScoreTen, 2, hide));
+		achievementsList.add(new Trophy(5, 2, AchievementType.ScoreFifteen, 2, hide));
+		achievementsList.add(new Trophy(4, 1, AchievementType.ScoreTwenty, 2, hide));
+		achievementsList.add(new Trophy(5, 1, AchievementType.ScoreCampaign, 2, hide));
 		
-		achievementsList.add(new Trophy(6, 1, AchievementType.Restarts, 10, true));
-		achievementsList.add(new Trophy(6, 2, AchievementType.Trapped, 5, true));
+		achievementsList.add(new Trophy(6, 1, AchievementType.Restarts, 10, hide));
+		achievementsList.add(new Trophy(6, 2, AchievementType.Trapped, 5, hide));
 		
 	}
 	

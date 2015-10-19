@@ -10,6 +10,8 @@ import com.tann.hexcity.screens.menu.trophy.TrophyPanel;
 
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
+import game.util.Sounds.SoundType;
 
 public class TrophyButton extends Actor{
 	
@@ -20,6 +22,7 @@ public class TrophyButton extends Actor{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.pushActor(TrophyPanel.get());
+				Sounds.playSound(SoundType.PushMenu);
 				event.stop();
 				return false;
 			}

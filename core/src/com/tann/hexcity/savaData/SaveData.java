@@ -2,8 +2,11 @@ package com.tann.hexcity.savaData;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.tann.hexcity.Main;
 import com.tann.hexcity.savaData.Trophy.AchievementType;
+import com.tann.hexcity.screens.gameScreen.GameScreen;
 import com.tann.hexcity.screens.gameScreen.GameScreen.GameType;
+import com.tann.hexcity.screens.gameScreen.ui.HighscoreIcon;
 
 public class SaveData {
 	Preferences data;
@@ -43,6 +46,7 @@ public class SaveData {
 	public boolean setHighscore(GameType type, int score){
 		int prevScore = getHighScore(type);
 		if(prevScore>score) return false;
+		if(prevScore!=0) GameScreen.get().newNotification.add(new HighscoreIcon(type, prevScore, score));
 		data.putInteger("highscore"+type.toString(), score);
 		data.flush();
 		return true;
@@ -57,5 +61,13 @@ public class SaveData {
 	
 	public void resetRestarts(){
 		data.putInteger("restartcount", 0);
+	}
+		
+	public boolean firstTime(){
+		boolean opened = data.getBoolean("openedthegamebefore", false);
+		if(opened)return false;
+		data.putBoolean("openedthegamebefore", true);
+		data.flush();
+		return true;
 	}
 }
