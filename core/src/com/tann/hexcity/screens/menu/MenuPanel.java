@@ -65,7 +65,6 @@ public class MenuPanel extends Group{
 			public void run() {
 				Main.self.currentScreen.popActor();
 				if(Main.self.currentScreen==TitleScreen.get()){
-					Sounds.playSound(SoundType.PopMenu);
 					return;
 				}
 				Main.self.setScreen(TitleScreen.get(), TransitionType.RIGHT, Interpolation.pow2Out, Main.screenTransitionSpeed);
