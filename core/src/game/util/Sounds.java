@@ -6,10 +6,10 @@ import com.tann.hexcity.Main;
 
 public class Sounds {
 	public enum SoundType{SelectTile, PlayTile, PushMenu, PopMenu}
-	private static Sound click0 = Gdx.audio.newSound(Gdx.files.internal("audio/click0.ogg"));
-	private static Sound click1 = Gdx.audio.newSound(Gdx.files.internal("audio/click1.ogg"));
-	private static Sound pushMenu = Gdx.audio.newSound(Gdx.files.internal("audio/pushmenu.ogg"));
-	private static Sound popMenu= Gdx.audio.newSound(Gdx.files.internal("audio/popmenu.ogg"));
+	private static Sound click0 = Gdx.audio.newSound(Gdx.files.internal("audio/click0.wav"));
+	private static Sound click1 = Gdx.audio.newSound(Gdx.files.internal("audio/click1.wav"));
+	private static Sound pushMenu = Gdx.audio.newSound(Gdx.files.internal("audio/pushmenu.wav"));
+	private static Sound popMenu= Gdx.audio.newSound(Gdx.files.internal("audio/popmenu.wav"));
 	private static void playSound(Sound sound){
 		float variance = .12f;
 		float add = (float) (Math.random()*variance*2-variance);

@@ -198,8 +198,6 @@ public class Trophy {
 	
 	public static ArrayList<Trophy> achievementsList = new ArrayList<>();
 	static {
-		//		width = 6;
-		//		height = 3;
 		for(int i=0;i<2;i++){
 			achievementsList.add(new Trophy(0, i+1, AchievementType.ScoreTen, 1-i));
 			achievementsList.add(new Trophy(1, i+1, AchievementType.ScoreFifteen, 1-i));
@@ -207,11 +205,11 @@ public class Trophy {
 			achievementsList.add(new Trophy(3, i+1, AchievementType.ScoreCampaign, 1-i));
 		}
 		achievementsList.add(new Trophy(0, 0, AchievementType.MakeGardenSetsInTen, 6));
-		achievementsList.add(new Trophy(1, 0, AchievementType.ScoreShrinesInFifteen, 4));
-		achievementsList.add(new Trophy(2, 0, AchievementType.ScorePointsWithASingleTileInTwenty, 18));
-		achievementsList.add(new Trophy(3, 0, AchievementType.PlayCampaigns, 20));
+		achievementsList.add(new Trophy(1, 0, AchievementType.ScoreShrinesInFifteen, 3));
+		achievementsList.add(new Trophy(2, 0, AchievementType.ScorePointsWithASingleTileInTwenty, 15));
+		achievementsList.add(new Trophy(3, 0, AchievementType.PlayCampaigns, 10));
 		achievementsList.add(new Trophy(4, 0, AchievementType.CutDownTreesWithASingleWoodsman, 4, false));
-		achievementsList.add(new Trophy(5, 0, AchievementType.Environmentalist, 60, false));
+		achievementsList.add(new Trophy(5, 0, AchievementType.Environmentalist, 50, false));
 		achievementsList.add(new Trophy(6, 0, AchievementType.Ziggurat, 0, false));
 		
 		boolean hide = true;
@@ -222,10 +220,7 @@ public class Trophy {
 		
 		achievementsList.add(new Trophy(6, 1, AchievementType.Restarts, 5, hide));
 		achievementsList.add(new Trophy(6, 2, AchievementType.Trapped, 5, hide));
-		
 	}
-	
-	
 
 	public static void checkTrophies(AchievementType action, int arg){
 		System.out.println("checking "+action+" "+arg);

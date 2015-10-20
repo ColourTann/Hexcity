@@ -18,6 +18,8 @@ import com.tann.hexcity.screens.titleScreen.TitleScreen;
 import game.util.Button;
 import game.util.Colours;
 import game.util.Draw;
+import game.util.Sounds;
+import game.util.Sounds.SoundType;
 
 public class MenuPanel extends Group{
 	private static MenuPanel self;
@@ -63,7 +65,7 @@ public class MenuPanel extends Group{
 			public void run() {
 				Main.self.currentScreen.popActor();
 				if(Main.self.currentScreen==TitleScreen.get()){
-					Gdx.app.exit();
+					Sounds.playSound(SoundType.PopMenu);
 					return;
 				}
 				Main.self.setScreen(TitleScreen.get(), TransitionType.RIGHT, Interpolation.pow2Out, Main.screenTransitionSpeed);

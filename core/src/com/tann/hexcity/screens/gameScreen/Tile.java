@@ -36,7 +36,7 @@ public class Tile extends Actor{
 		//java enums are way cool
 		Hut(Main.atlas.findRegion("tile/hut"), "+1 point[n]Place another free hut."), 
 		Forester(Main.atlas.findRegion("tile/logger"), "+1 point[n]Cut down all adjacent trees for +1 point each."),
-		Garden(Main.atlas.findRegion("tile/garden"), "+2 points[n]+4 points instead if in a group of exactly 3 adjacent gardens."),
+		Garden(Main.atlas.findRegion("tile/garden"), "+2 points[n]+4 points instead if in a group of exactly 3 gardens."),
 		Temple(Main.atlas.findRegion("tile/temple"), "+1 point per different adjacent tile. Other temples don't count due to religious competition by-laws."),
 		Shrine(Main.atlas.findRegion("tile/shrine"), "+5 points if more than 2 hexes away from all other shrines."),
 		Circle(Main.atlas.findRegion("tile/meeting"), "+1 point[n]+4 more points if completely surrounded."),
