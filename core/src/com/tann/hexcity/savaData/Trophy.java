@@ -51,26 +51,26 @@ public class Trophy {
 			requiredType=GameType.Ten;
 			switch(index){
 			case 0: this.target=30; break;
-			case 1: this.target=38; break;
-			case 2: this.target=42; break;
+			case 1: this.target=37; break;
+			case 2: this.target=43; break;
 			}
 			break;
 		case ScoreFifteen:
 			requiredType=GameType.Fifteen;
 			this.index=target;
 			switch(index){
-			case 0: this.target=45; break;
-			case 1: this.target=55; break;
-			case 2: this.target=65; break;
+			case 0: this.target=40; break;
+			case 1: this.target=52; break;
+			case 2: this.target=61; break;
 			}
 			break;
 		case ScoreTwenty:
 			requiredType=GameType.Twenty;
 			this.index=target;
 			switch(index){
-			case 0: this.target=55; break;
-			case 1: this.target=80; break;
-			case 2: this.target=84; break;
+			case 0: this.target=60; break;
+			case 1: this.target=70; break;
+			case 2: this.target=78; break;
 			}
 			break;
 		case ScoreCampaign:
@@ -223,7 +223,6 @@ public class Trophy {
 	}
 
 	public static void checkTrophies(AchievementType action, int arg){
-		System.out.println("checking "+action+" "+arg);
 		for(Trophy t: achievementsList){
 			if(t.requiredType!=null && t.requiredType!=GameScreen.get().gameType) continue;
 			if(t.type!=action) continue;			

@@ -47,7 +47,6 @@ public class SaveData {
 	public boolean setHighscore(GameType type, int score){
 		int prevScore = getHighScore(type);
 		if(prevScore>=score) return false;
-		System.out.println("showing notif");
 		if(prevScore!=0) GameScreen.get().newNotification.add(new HighscoreIcon(type, prevScore, score));
 		data.putInteger("highscore"+type.toString(), score);
 		data.flush();
@@ -64,6 +63,7 @@ public class SaveData {
 	
 	public void resetRestarts(){
 		data.putInteger("restartcount", 0);
+		data.flush();
 	}
 		
 	public boolean firstTime(){

@@ -53,7 +53,6 @@ public class TitleScreen extends Screen{
 			b.setPosition(buttonX+buttonXGap*(i%2), buttonY-buttonYGap*(i/2));
 		}
 		PauseButton mButt = new PauseButton();
-		System.out.println(Main.width+":"+mButt.getWidth()+":"+(int)(Main.width/2f-mButt.getWidth()/2f));
 		mButt.setPosition((int)Math.ceil((Main.width/2f-mButt.getWidth()/2f)), 4);
 		addActor(mButt);	
 
