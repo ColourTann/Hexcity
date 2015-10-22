@@ -19,6 +19,7 @@ import game.util.Button;
 import game.util.Colours;
 import game.util.Draw;
 import game.util.Sounds;
+import game.util.TannFont;
 import game.util.Sounds.SoundType;
 
 public class MenuPanel extends Group{
@@ -142,6 +143,10 @@ public class MenuPanel extends Group{
 		Draw.fillRectangle(batch, getX(), getY(), getWidth(), getHeight());
 		batch.setColor(Colours.dark);
 		Draw.fillRectangle(batch, getX()+1, getY()+1, getWidth()-2, getHeight()-2);
+		
+		batch.setColor(Colours.earth);
+		TannFont.font.drawString(batch, "v"+Main.version, (int)getX()+2, (int)getY()+2, false);
+		
 		super.draw(batch, parentAlpha);
 	}
 

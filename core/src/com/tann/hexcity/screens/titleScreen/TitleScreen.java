@@ -122,6 +122,7 @@ public class TitleScreen extends Screen{
 
 	@Override
 	public void postDraw(Batch batch) {
+	
 	}
 
 	@Override

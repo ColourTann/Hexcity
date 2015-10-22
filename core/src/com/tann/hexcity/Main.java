@@ -28,6 +28,7 @@ import com.tann.hexcity.screens.titleScreen.TitleScreen;
 
 
 public class Main extends ApplicationAdapter {
+	public static final float version = 1.01f;
 	public static final float screenTransitionSpeed = .5f;
 	public static int width=128,height=64;
 	SpriteBatch batch;
