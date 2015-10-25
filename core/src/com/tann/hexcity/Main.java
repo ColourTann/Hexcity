@@ -148,7 +148,6 @@ public class Main extends ApplicationAdapter {
 		catcherStage.addListener(new InputListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("FUCKspokrgjeupiorhgp ieurhg");
 				int newX=(int)x;
 				int newY =Gdx.graphics.getHeight()-((int)y);
 				boolean handled = stage.touchDown(newX, newY, 0, 0);
