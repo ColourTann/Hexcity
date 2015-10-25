@@ -22,7 +22,7 @@ public class InputGrabber extends Group{
 				Main.self.currentScreen.popActor();
 				Sounds.playSound(SoundType.PopMenu);
 				event.stop();
-				return false;
+				return true;
 			}
 		});
 	}

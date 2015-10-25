@@ -24,7 +24,7 @@ public class TrophyButton extends Actor{
 				Main.self.currentScreen.pushActor(TrophyPanel.get());
 				Sounds.playSound(SoundType.PushMenu);
 				event.stop();
-				return false;
+				return true;
 			}
 
 		});

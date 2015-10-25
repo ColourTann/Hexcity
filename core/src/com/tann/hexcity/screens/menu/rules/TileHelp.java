@@ -23,7 +23,7 @@ public class TileHelp extends Actor{
 				Main.self.currentScreen.pushActor(new RulesBlock("["+type.toString().toLowerCase()+"] "+type.toString().toUpperCase()+" ["+type.toString().toLowerCase()+"]"+"[n]"+type.rulesText.toUpperCase()));
 				Sounds.playSound(SoundType.PushMenu);
 				event.stop();
-				return false;
+				return true;
 			}
 			
 		});

@@ -30,7 +30,7 @@ public class ScorePanel extends Actor{
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.popActor();
 				event.cancel();
-				return false;
+				return true;
 			}
 		});
 	}

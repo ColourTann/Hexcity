@@ -68,7 +68,7 @@ public class Tile extends Actor{
 				placementEffect();
 				GameScreen.get().tilePlaced(Tile.this);
 				event.stop();
-				return false;
+				return true;
 			}
 		});
 	}

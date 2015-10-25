@@ -23,7 +23,7 @@ public class ScoreButton extends Actor{
 				Main.self.currentScreen.pushActor(ScorePanel.get());
 				Sounds.playSound(SoundType.PushMenu);
 				event.cancel();
-				return false;
+				return true;
 			}
 		});
 	}

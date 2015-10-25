@@ -25,7 +25,7 @@ public class AnnoyingFirstTimePopup extends Group{
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.popActor();
 				event.stop();
-				return false;
+				return true;
 			}
 		});
 	}

@@ -17,7 +17,7 @@ public class Button extends Actor{
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				Sounds.playSound(SoundType.PushMenu);
 				clickAction.run();
-				return false;
+				return true;
 			}
 		});
 	}

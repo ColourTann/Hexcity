@@ -40,7 +40,7 @@ public class TrophyPanel extends Group{
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				event.stop();
-				return false;
+				return true;
 			}
 		});
 	

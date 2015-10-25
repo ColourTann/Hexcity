@@ -27,7 +27,7 @@ public class HighscoreDescription extends Group{
 				Main.self.currentScreen.popActor();
 				Sounds.playSound(SoundType.PopMenu);
 				event.stop();
-				return false;
+				return true;
 			}
 		});
 		setPosition((int)(Main.width/2-getWidth()/2), (int)(Main.height/2-getHeight()/2));

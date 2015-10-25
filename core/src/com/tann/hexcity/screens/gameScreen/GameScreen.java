@@ -84,7 +84,7 @@ public class GameScreen extends Screen{
 		addListener(new InputListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				if(!scoreKeeper.finished)return false;
+				if(!scoreKeeper.finished)return true;
 				if(hammurabiMode){
 					switch(turnTracker.turns){
 					case 10:
@@ -100,16 +100,16 @@ public class GameScreen extends Screen{
 					case 20: 
 						if(!scoreKeeper.shownBreakdown){
 							scoreKeeper.showBreakdown();
-							return false;
+							return true;
 						}
 						Main.self.setScreen(TitleScreen.get(), TransitionType.RIGHT, Interpolation.pow2Out, Main.screenTransitionSpeed);
 						break;
 					}
-					return false;
+					return true;
 				}
 				Main.self.setScreen(TitleScreen.get(), TransitionType.RIGHT, Interpolation.pow2Out, Main.screenTransitionSpeed);
 
-				return false;
+				return true;
 			}
 		});
 	}
@@ -216,7 +216,7 @@ public class GameScreen extends Screen{
 					updateAchievementLocations();
 					if(icon instanceof HighscoreIcon) Sounds.playSound(SoundType.PushMenu);
 					event.stop();
-					return false;
+					return true;
 				}
 			});
 		}

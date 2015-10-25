@@ -27,7 +27,7 @@ public class TrophyIcon extends Actor{
 				Main.self.currentScreen.pushActor(a.getDesciptionPanel());
 				Sounds.playSound(SoundType.PushMenu);
 				event.stop();
-				return false;
+				return true;
 			}
 		});
 	}

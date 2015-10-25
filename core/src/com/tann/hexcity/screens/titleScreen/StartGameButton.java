@@ -23,7 +23,7 @@ public class StartGameButton extends Actor{
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				TitleScreen.self.startGame(StartGameButton.this.type);
 				Sounds.playSound(SoundType.PushMenu);
-				return false;
+				return true;
 			}
 			
 		});

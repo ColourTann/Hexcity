@@ -5,6 +5,7 @@ import game.util.Colours;
 import game.util.Screen;
 import game.util.Sounds;
 import game.util.TextRenderer;
+import game.util.Sounds.SoundType;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -43,7 +44,9 @@ public class Main extends ApplicationAdapter {
 	public static float ticks;
 	public enum MainState{Normal, Paused}
 	Viewport port;
+	Stage catcherStage;
 	public static SaveData saveData;
+	int offsetX, offsetY;
 	@Override
 	public void create () {
 		self=this;
@@ -65,6 +68,22 @@ public class Main extends ApplicationAdapter {
 			break;
 		}
 		saveData = new SaveData();
+		
+		catcherStage = new Stage();
+		
+		catcherStage.addListener(new InputListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				int newX=(int)x;
+				int newY =Gdx.graphics.getHeight()-((int)y);
+				boolean handled = stage.touchDown(newX, newY, 0, 0);
+				if(!handled){
+					Sounds.playSound(SoundType.PopMenu);
+					currentScreen.popActor();
+				}
+				return true;
+			}
+		});
 
 
 		//bunch of stuff for texturepacking //
@@ -80,13 +99,16 @@ public class Main extends ApplicationAdapter {
 		stage = new Stage(port);
 		cam=(OrthographicCamera) stage.getCamera();
 		batch = (SpriteBatch) stage.getBatch();
-		Gdx.input.setInputProcessor(stage);
+		
+		Gdx.input.setInputProcessor(catcherStage);
+		
 		//I implemented my own screen system so I have more control over it (yay transitions and screenshake)
 		
 		setScreen(TitleScreen.get());	
 		Gdx.input.setCatchBackKey(true);
 		stage.addListener(new InputListener(){
 			public boolean keyDown (InputEvent event, int keycode) {
+				
 				currentScreen.keyPressed(keycode);
 				switch(keycode){
 				case Keys.ESCAPE:
@@ -100,10 +122,16 @@ public class Main extends ApplicationAdapter {
 							Main.self.setScreen(TitleScreen.get(), TransitionType.RIGHT, Interpolation.pow2Out, Main.screenTransitionSpeed);
 						}
 					}
-					return false;
+					return true;
 				}
 
 				return true;
+			
+			}
+			
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				return false;
 			}
 
 
@@ -121,7 +149,9 @@ public class Main extends ApplicationAdapter {
 		int scale = Math.min(xScale, yScale);
 		int w = scale*128;
 		int h =	scale*64;
-		port.setScreenBounds(Gdx.graphics.getWidth()/2-w/2, Gdx.graphics.getHeight()/2-h/2, w, h);
+		offsetX= Gdx.graphics.getWidth()/2-w/2;
+		offsetY= Gdx.graphics.getHeight()/2-h/2;
+		port.setScreenBounds(offsetX, offsetY, w, h);
 		port.apply();
 	}
 

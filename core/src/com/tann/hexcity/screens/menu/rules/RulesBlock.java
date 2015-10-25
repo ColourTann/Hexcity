@@ -41,7 +41,7 @@ public class RulesBlock extends Actor{
 				next();
 				Sounds.playSound(SoundType.PopMenu);
 				event.stop();
-				return false;
+				return true;
 			}
 		});
 	}

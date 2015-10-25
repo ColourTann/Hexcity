@@ -25,11 +25,11 @@ public class TilePicker extends Actor{
 		setSize(Tile.tileWidth, Tile.tileHeight);
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				if(finished)return false;
+				if(finished)return true;
 				Sounds.playSound(SoundType.SelectTile);
 				GameScreen.get().pickTile(TilePicker.this);
 				pick();
-				return false;
+				return true;
 			}
 		});
 		randomiseType(false);

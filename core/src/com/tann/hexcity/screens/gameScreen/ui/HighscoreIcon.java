@@ -21,7 +21,7 @@ public class HighscoreIcon extends Actor{
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				Main.self.currentScreen.pushActor(new HighscoreDescription(type, oldScore, newScore));
 				event.stop();
-				return false;
+				return true;
 			}
 		});
 	}

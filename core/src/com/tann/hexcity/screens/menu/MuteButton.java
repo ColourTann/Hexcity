@@ -23,7 +23,7 @@ public class MuteButton extends Actor{
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				Main.saveData.toggleMute();
 				Sounds.playSound(SoundType.PlayTile);
-				return false;
+				return true;
 			}
 		});
 	}

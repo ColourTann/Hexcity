@@ -18,7 +18,7 @@ public class PauseButton extends Actor{
 				Sounds.playSound(SoundType.PushMenu);
 				MenuPanel.show();
 				event.stop();
-				return false;
+				return true;
 			}
 		});
 	}
