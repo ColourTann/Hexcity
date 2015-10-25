@@ -56,7 +56,7 @@ public class Main extends ApplicationAdapter {
 		case Applet:
 			break;
 		case Desktop:
-			setScale(6);
+			//			setScale(6);
 			break;
 		case HeadlessDesktop:
 			break;
@@ -68,22 +68,8 @@ public class Main extends ApplicationAdapter {
 			break;
 		}
 		saveData = new SaveData();
-		
-		catcherStage = new Stage();
-		
-		catcherStage.addListener(new InputListener(){
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				int newX=(int)x;
-				int newY =Gdx.graphics.getHeight()-((int)y);
-				boolean handled = stage.touchDown(newX, newY, 0, 0);
-				if(!handled){
-					Sounds.playSound(SoundType.PopMenu);
-					currentScreen.popActor();
-				}
-				return true;
-			}
-		});
+		setupCatcherStage();
+
 
 
 		//bunch of stuff for texturepacking //
@@ -99,16 +85,15 @@ public class Main extends ApplicationAdapter {
 		stage = new Stage(port);
 		cam=(OrthographicCamera) stage.getCamera();
 		batch = (SpriteBatch) stage.getBatch();
-		
-		Gdx.input.setInputProcessor(catcherStage);
-		
+
+
 		//I implemented my own screen system so I have more control over it (yay transitions and screenshake)
-		
+
 		setScreen(TitleScreen.get());	
 		Gdx.input.setCatchBackKey(true);
 		stage.addListener(new InputListener(){
 			public boolean keyDown (InputEvent event, int keycode) {
-				
+
 				currentScreen.keyPressed(keycode);
 				switch(keycode){
 				case Keys.ESCAPE:
@@ -126,9 +111,9 @@ public class Main extends ApplicationAdapter {
 				}
 
 				return true;
-			
+
 			}
-			
+
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				return false;
@@ -151,8 +136,31 @@ public class Main extends ApplicationAdapter {
 		int h =	scale*64;
 		offsetX= Gdx.graphics.getWidth()/2-w/2;
 		offsetY= Gdx.graphics.getHeight()/2-h/2;
+		setupCatcherStage();
 		port.setScreenBounds(offsetX, offsetY, w, h);
 		port.apply();
+
+	}
+
+	private void setupCatcherStage() {
+		catcherStage = new Stage();
+
+		catcherStage.addListener(new InputListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				System.out.println("FUCKspokrgjeupiorhgp ieurhg");
+				int newX=(int)x;
+				int newY =Gdx.graphics.getHeight()-((int)y);
+				boolean handled = stage.touchDown(newX, newY, 0, 0);
+				if(!handled){
+					if(currentScreen.popActor()){
+						Sounds.playSound(SoundType.PopMenu);
+					}
+				}
+				return true;
+			}
+		});
+		Gdx.input.setInputProcessor(catcherStage);
 	}
 
 	public void setScale(int scale){
