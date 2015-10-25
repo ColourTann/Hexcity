@@ -34,7 +34,7 @@ public class TitleScreen extends Screen{
 	static TextureRegion smallerTile = Main.atlas.findRegion("ui/smallertile");
 	static TextureRegion[] smallerDecoration = new TextureRegion[]{Main.atlas.findRegion("ui/smallergarden"), Main.atlas.findRegion("ui/smallershrine"), Main.atlas.findRegion("ui/smallerlogger")};
 	
-	ArrayList<StartGameButton> butts = new ArrayList<>();
+	ArrayList<StartGameButton> butts = new ArrayList<StartGameButton>();
 	public static TitleScreen self;
 	
 	public static TitleScreen get(){

@@ -27,7 +27,7 @@ public class Tile extends Actor{
 	static final int tileTapOffsetY=1;
 	static TextureRegion availableTileRegion = Main.atlas.findRegion("tile/available");
 	static TextureRegion scoreRegion = Main.atlas.findRegion("tile/score");
-	ArrayList<TileType> adjacentTypes = new ArrayList<>();
+	ArrayList<TileType> adjacentTypes = new ArrayList<TileType>();
 	boolean gardenBonusScored;
 	boolean showScore;
 	int lastScore;
@@ -98,7 +98,7 @@ public class Tile extends Actor{
 			score(counter+1);
 			break;
 		case Garden:
-			ArrayList<Tile> gardensFound = new ArrayList<>();
+			ArrayList<Tile> gardensFound = new ArrayList<Tile>();
 			gardensFound.add(this);
 			for(int i=0;i<gardensFound.size();i++){
 				Tile g=gardensFound.get(i);
@@ -222,7 +222,7 @@ public class Tile extends Actor{
 	}
 
 	public ArrayList<Tile> getAdjacentTiles(int dist, boolean includeSelf){
-		ArrayList<Tile> tiles= new ArrayList<>();
+		ArrayList<Tile> tiles= new ArrayList<Tile>();
 		for(int x=-dist;x<=dist;x++){
 			for(int y=-dist;y<=dist;y++){
 				Tile t = GameScreen.get().grid.getTile(this.x+x, this.y+y);

@@ -192,8 +192,8 @@ public class GameScreen extends Screen{
 		
 	}
 
-	public ArrayList<Actor> newNotification = new ArrayList<>();
-	ArrayList<Actor> oldNotifications = new ArrayList<>();
+	public ArrayList<Actor> newNotification = new ArrayList<Actor>();
+	ArrayList<Actor> oldNotifications = new ArrayList<Actor>();
 
 
 	

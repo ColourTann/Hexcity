@@ -196,7 +196,7 @@ public class Trophy {
 		return false;
 	}
 	
-	public static ArrayList<Trophy> achievementsList = new ArrayList<>();
+	public static ArrayList<Trophy> achievementsList = new ArrayList<Trophy>();
 	static {
 		for(int i=0;i<2;i++){
 			achievementsList.add(new Trophy(0, i+1, AchievementType.ScoreTen, 1-i));

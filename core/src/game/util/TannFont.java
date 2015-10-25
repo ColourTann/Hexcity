@@ -11,7 +11,7 @@ import com.tann.hexcity.Main;
 
 public class TannFont {
 	public static TannFont font = new TannFont(Main.atlas.findRegion("font/font"));
-	HashMap<Character, TextureRegion> glyphs = new HashMap<>();
+	HashMap<Character, TextureRegion> glyphs = new HashMap<Character, TextureRegion>();
 	//this is not really ideal, I could make it dynamically-detect heights but I think I'll only ever be using one font
 	int[] heights= new int[]{5,5,5}; 
 	public TannFont(TextureRegion font) {

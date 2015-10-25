@@ -15,7 +15,7 @@ public abstract class Screen extends Group{
 	private static float shakeDrag=.005f;
 	private ArrayList<Particle> particles = new ArrayList<Particle>();
 	private ArrayList<Particle> newParticles = new ArrayList<Particle>();
-	private ArrayList<Actor> actorStack = new ArrayList<>();
+	private ArrayList<Actor> actorStack = new ArrayList<Actor>();
 	
 	public void pushActor(Actor a){
 		Group group = new Group();

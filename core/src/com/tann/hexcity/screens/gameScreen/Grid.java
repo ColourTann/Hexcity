@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.tann.hexcity.savaData.Trophy;
 import com.tann.hexcity.savaData.Trophy.AchievementType;
 import com.tann.hexcity.screens.gameScreen.Tile.TileType;
@@ -14,7 +16,7 @@ public class Grid extends Group{
 	public int treesRemoved;
 	private int gardensScored;
 	Tile[][] tiles = new Tile[9][11];
-	ArrayList<Tile> allTiles = new ArrayList<>();
+	ArrayList<Tile> allTiles = new ArrayList<Tile>();
 	public Tile lastTilePlaced;
 	public Grid() {
 		setupTiles();
